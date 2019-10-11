@@ -1,5 +1,5 @@
 <?php 
-require_once "../database/connection.php";
+
 
 class User extends Database
 {
@@ -14,10 +14,33 @@ class User extends Database
         else
         {
             $result->execute();
+            return $result;
         }
+
     }
 
+    public function login($username, $password) 
+    {
 
+        $sql = "SELECT * FROM user WHERE (name = '$username' AND password = '$password')";
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        $res = $result->fetch(PDO::FETCH_ASSOC);
+        if($res)
+        {
+            
+            //If without '$res = $result->fetch(PDO::FETCH_ASSOC)' showing: 
+            //Fatal error: Uncaught Error: Cannot use object of type PDOStatement as array 
+            
+            $_SESSION['uid'] = $res['uid'];
+            $_SESSION['name'] = $res['name'];
+            $_SESSION['type'] = $res['type'];
+                        
+            return true;
+        }else
+        die ("Not correct sql");
+
+    }
 
 
 

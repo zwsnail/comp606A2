@@ -1,19 +1,15 @@
 <?php
 require_once "../helper/autoloader.php";
-session_start();
 
 
-$username = $_POST['name'];
+
+$username = $_POST['username'];
 $_SESSION['name'] = $username;
 
-$mobile = $_POST['mob_number'];
-$email = $_POST['email'];
-$type = $_POST['type'];
-$_SESSION['type'] = $type;
-$password = $_POST['pass'];
+$password = $_POST['password'];
 
 $user = new User;
-$user->register($username, $mobile, $email, $type, $password);
+$user->login($username, $password);
 header("Location: ../welcome.php?");
 // header("Location: ../welcome.php?<?php echo '$username';?>");
 <!-- header("Location: ../index.php?error=sqlerror"); -->

@@ -1,6 +1,6 @@
 <?php
-// require "./extra/class/user.php";
-session_start();
+require "helper/autoloader.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +32,22 @@ session_start();
         <a class="nav-link text-warning" href="home.php">Home</a>
       </li>
     </ul>
-        <a class="nav-link text-right">Want to post?</a>
-        <a href="login_register.php"><button type="submit" class="btn btn-outline-warning text-right" name="loginbtn">Login</button></a>
+
+
+    <?php
+    if(!isset($_SESSION['name']))
+    {
+        
+        echo '<a class="nav-link text-right">Want to post?</a>';
+        echo '<a href="login_register.php"><button type="submit" class="btn btn-outline-warning text-right" name="loginbtn">Login</button></a>';
+    }
+    else
+    {
+       
+        echo '<a href="home.php"><button type="submit" class="btn btn-outline-warning text-right" name="loginbtn">Logout</button></a>';
+    }
+
+  
+  ?>
   </div>
 </nav>
