@@ -8,7 +8,12 @@ include('header.php');
 
 ?>
 <?php 
+
+$uid = $_SESSION['uid'];
+$name = $_SESSION['name'];
 $_SESSION['login_type'] = $login_type;
+
+
 if(isset($login_type) && $login_type == 'customer')
 {
 ?>
@@ -21,7 +26,9 @@ if(isset($login_type) && $login_type == 'customer')
     $job = new Job;
     $result = $job->customer_view_job($_SESSION['uid']);
 }
-else{
+
+if(isset($login_type) && $login_type == 'trademan')
+{
 ?>
     <div class="">
     <h1 class="">Welcome to SafeTrade! "$trademan'a name here"</h1>

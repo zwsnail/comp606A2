@@ -31,7 +31,8 @@ class User extends Database
             
             //If without '$res = $result->fetch(PDO::FETCH_ASSOC)' showing: 
             //Fatal error: Uncaught Error: Cannot use object of type PDOStatement as array 
-            
+            session_start();
+
             $_SESSION['uid'] = $res['uid'];
             $_SESSION['name'] = $res['name'];
             $_SESSION['type'] = $res['type'];

@@ -10,6 +10,9 @@ include('header.php');
 <?php 
 
 $type = $_SESSION['type'];
+$uid = $_SESSION['uid'];
+$name = $_SESSION['name'];
+
 
 
 if(isset($type) && $type == 'customer')
@@ -25,7 +28,7 @@ else
 {
 
     echo '<h2 class="">Are you looking for a job to do?</h2>
-    
+    <a href="trademan_bid_joblist.php"><button>View my bid job!</button></a>
     <a href="customer_job_detail.php"><button>Job list</button></a>';
 
 }

@@ -39,14 +39,7 @@
 					</div>
 					<div class="form-group">
 					<div class="form-group">
-						<p>Login as</p>
-						<div class="form-group">
-						<label><input type="radio" name="login_type" class=".radio-inline" value="customer" required> Customer</label>
-						<label><input type="radio" name="login_type" class=".radio-inline" value="trademan" required> Trademan</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<input type="submit" name="login" id="login" value="Login" class="btn btn-primary btn-block">
+						<input type="submit" id="login" value="Login" class="btn btn-primary btn-block">
 					</div>
 					<div class="form-group">
 						<p class="text-center">New user? <a href="#" id="register-btn">Register Here</a></p>
