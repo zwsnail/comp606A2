@@ -38,10 +38,11 @@
 						<input type="password" name="password" class="form-control" placeholder="Password" required minlength="6">
 					</div>
 					<div class="form-group">
-						<div class="custom-control custom-checkbox">
-							<input type="checkbox" name="rem" class="custom-control-input" id="customCheck">
-							<label for="customCheck" class="custom-control-label">Remember me</label>
-							<a href="#" id="forgot-btn" class="float-right">Forgot Password?</a>
+					<div class="form-group">
+						<p>Login as</p>
+						<div class="form-group">
+						<label><input type="radio" name="login_type" class=".radio-inline" value="customer" required> Customer</label>
+						<label><input type="radio" name="login_type" class=".radio-inline" value="trademan" required> Trademan</label>
 						</div>
 					</div>
 					<div class="form-group">

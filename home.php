@@ -7,7 +7,8 @@ include('header.php');
 <h2 class="">Latest Jobs</h2>
 
 <!-- display the jobs -->
-
-
-
 </div>
+
+<?php
+include('footer.php');
+?>

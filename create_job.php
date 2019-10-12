@@ -38,11 +38,11 @@ include('header.php');
 					</div>
 
 					<div class="form-group">
-                    <p>What is the starting date of the job?</p>
+                    <p>What is the date when job will be active?</p>
 						<input type="date" name="start" class="form-control" placeholder="Job Start Time" required>
 					</div>
 					<div class="form-group">
-                    <p>What is the ending date of the job?</p>
+                    <p>What is the date when request for estimates finishes?</p>
 						<input type="date" name="expire" class="form-control" placeholder="Job Expire Time" required>
 					</div>
 					<div class="form-group">
