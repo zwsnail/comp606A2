@@ -1,5 +1,5 @@
 <?php
-require "helper/autoloader.php";
+// require "helper/autoloader.php";
 
 ?>
 

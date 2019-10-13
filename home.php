@@ -1,19 +1,20 @@
 <?php
+// include "classes/connection.php";
+// require_once "classes/User.php";
+// require_once "classes/Job.php";
+// require_once "classes/estimate.php";
+// include("helper/autoloader.php");
+
+include_once __DIR__ . "/autoload.php";
 include('header.php');
+
 ?>
 
-<div class="">
-<h1 class="">Welcome to SafeTrade!</h1>
-<h2 class="">Latest Jobs</h2>
 
-
-</div>
 
 
 <?php
 
-if(isset($db))
-{
 ?>
     <div class="">
     <h1 class="">Welcome to SafeTrade! </h1>
@@ -21,12 +22,10 @@ if(isset($db))
     </div>
     <!-- display the jobs -->
     <?php
+
     $job = new Job;
     $result = $job->public_view_job();
 
-
-
-}
 
 
 

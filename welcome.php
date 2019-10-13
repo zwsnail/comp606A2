@@ -1,19 +1,19 @@
 <?php
+include_once __DIR__ . "/autoload.php";
 session_start();
 include('header.php');
 
-?>
 
 
-<h1 class="">Welcome to SafeTrade! <?php echo '$_SESSION["user_id"]';?></h1>
 
-<?php 
+
 
 $type = $_SESSION['type'];
 $uid = $_SESSION['uid'];
 $name = $_SESSION['name'];
 
 
+echo '<h1>Welcome to SafeTrade! '.$name.'</h1>';
 
 if(isset($type) && $type == 'customer')
 {

@@ -1,6 +1,7 @@
 <?php 
 
 
+
 class User extends Database
 {
 
@@ -36,6 +37,9 @@ class User extends Database
             $_SESSION['uid'] = $res['uid'];
             $_SESSION['name'] = $res['name'];
             $_SESSION['type'] = $res['type'];
+            $type = $_SESSION['type'];
+            $uid = $_SESSION['uid'];
+            $name = $_SESSION['name'];
                         
             return true;
         }else

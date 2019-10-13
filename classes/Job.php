@@ -1,5 +1,7 @@
 <?php 
 
+
+
 class Job extends Database
 {
 
@@ -68,9 +70,6 @@ class Job extends Database
             </div>
 
         <?php
-        // $_SESSION['uid'] = $res['uid'];
-        // $_SESSION['name'] = $res['name'];
-        // $_SESSION['type'] = $res['type'];
         }?>
         </tbody>
         </table>
@@ -91,7 +90,7 @@ class Job extends Database
         <thead>
         <tr>
         <th>Job ID</th>
-        <th>Creater Customer ID</th>
+        <th>Creater Customer ID(Your ID)</th>
         <th>Location</th>
         <th>Description</th>
         <th>Estimated Total Cost</th>
@@ -124,9 +123,6 @@ class Job extends Database
             </div>
 
         <?php
-        // $_SESSION['uid'] = $res['uid'];
-        // $_SESSION['name'] = $res['name'];
-        // $_SESSION['type'] = $res['type'];
         }?>
         </tbody>
         </table>
@@ -180,16 +176,16 @@ class Job extends Database
                 <td><?= $res['job_status']; ?> </td>
                 <td><?= $res['trademan_id']; ?> </td>
                 
-                <!-- <td><a href="../bid.php"><button>Bid</button></td></a> -->
+                <td><a href="bid.php"><button>Bid</button></td></a>
             <?php
-            if(!$res['job_status'] == 'Got bid')
-            {
-                echo '<td><a href="../bid.php"><button>Bid</button></td></a>';
-            }else{
-                echo 'You have bid this job';
-            }
+            //if(!$res['job_status'] == 'Got bid')
+            //{
+                //echo '<td><a href="../bid.php"><button>Bid</button></td></a>';
+            //}else{
+                //echo 'You have bid this job';
+            //}
 
-            var_dump($res['job_status']);
+        
             
             ?> 
             
@@ -200,9 +196,6 @@ class Job extends Database
             </div>
 
         <?php
-        // $_SESSION['uid'] = $res['uid'];
-        // $_SESSION['name'] = $res['name'];
-        // $_SESSION['type'] = $res['type'];
         }?>
         </tbody>
         </table>

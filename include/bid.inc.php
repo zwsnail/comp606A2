@@ -1,6 +1,6 @@
 <?php 
-// session_start();
-require_once "../helper/autoloader.php";
+session_start();
+require_once "../autoload.php";
 
 $user_id = $_SESSION['uid'];
 $name = $_SESSION['name'];

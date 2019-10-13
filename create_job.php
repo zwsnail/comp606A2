@@ -1,4 +1,6 @@
 <?php
+include_once "autoload.php";
+session_start();
 include('header.php');
 
 ?>
@@ -12,7 +14,7 @@ include('header.php');
 		<div class="row">
 			<div class="col-lg-4 offset-lg-4 bg-light rounded" id="register-box">
 				<h2 class="text-center mt-2">Create my job for a trademan</h2>
-				<form action="include/createjob.inc.php?<?php echo '$user_id'?>" method="post" role="form" class="p-2" id="register-frm">
+				<form action="include/createjob.inc.php?" method="post" role="form" class="p-2" id="register-frm">
 					<div class="form-group">
 						<input type="text" name="location" class="form-control" placeholder="Job Location" required>
 					</div>

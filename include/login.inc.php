@@ -1,23 +1,21 @@
 <?php
-require_once "../helper/autoloader.php";
+include_once "../autoload.php";
 
 
 
 
 $username = $_POST['username'];
 $password = $_POST['password'];  
-$login_type = $_POST['login_type'];
-// $_SESSION['name'] = $username;
-// $_SESSION['login_type'] = $login_type;
+// var_dump($username);
 
-
-// $_SESSION['login_type'] = $res['uid'];
-// $_SESSION['name'] = $res['name'];
-// $_SESSION['type'] = $res['type'];
 
 $user = new User;
 $user->login($username, $password);
 
+$type = $_SESSION['type'];
+$uid = $_SESSION['uid'];
+$name = $_SESSION['name'];
+// var_dump($type);
 header("Location: ../welcome.php?");
 // header("Location: ../welcome.php?<?php echo '$username';?>");
 <!-- header("Location: ../index.php?error=sqlerror"); -->
