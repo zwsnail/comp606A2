@@ -48,6 +48,16 @@ class User extends Database
     }
 
 
+    public function admin_login($username, $password) 
+    {
+
+        $sql = "SELECT * FROM admin WHERE (admin_name = '$username' AND admin_password = '$password')";
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        $res = $result->fetch(PDO::FETCH_ASSOC);
+
+    }
+
 
 
 }

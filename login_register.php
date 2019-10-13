@@ -17,13 +17,6 @@
 
 <body>  
 	<div class="container mt-4">
-		<!-- <div class="row">
-			<div class="col-lg-4 offset-lg-4" id="alert">
-				<div class="alert alert-success">
-					<strong id="result">Hello World!</strong>
-				</div>
-			</div>
-		</div> -->
 
 		<!-- login form -->
 
@@ -78,32 +71,22 @@
 					<label><input type="radio" name="type" class=".radio-inline" value="trademan" required> Trademan</label>
 
 						<!-- <div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" value="customer" name="customRadioInline1" class="custom-control-input">
-						<label class="custom-control-label" for="customRadioInline1">Customer</label>
+						<input type="radio" value="customer" name="type" class="custom-control-input">
+						<label class="custom-control-label" for="type">Customer</label>
 						</div>
 						<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" value="trademan" name="customRadioInline1" class="custom-control-input">
-						<label class="custom-control-label" for="customRadioInline2">Trademan</label>
+						<input type="radio" value="trademan" name="type" class="custom-control-input">
+						<label class="custom-control-label" for="type">Trademan</label>
 						</div> -->
 
-
 					</div>
-
-
-
-
 					<div class="form-group">
 						<input type="password" name="pass" id="pass" class="form-control" placeholder="Password" required minlength="6">
 					</div>
 					<div class="form-group">
 						<input type="password" name="cpass" id="cpass" class="form-control" placeholder="Comfirm Password" required minlength="6">
 					</div>
-					<div class="form-group">
-						<div class="custom-control custom-checkbox">
-							<input type="checkbox" name="rem" class="custom-control-input" id="customCheck2">
-							<label for="customCheck2" class="custom-control-label">I green to the <a id="term" href="#">terms & conditions.</a></label>
-						</div>
-					</div>
+
 					<div class="form-group">
 						<input type="submit" name="register" id="register" value="Register" class="btn btn-primary btn-block">
 					</div>
@@ -194,10 +177,6 @@
 		   	$("#forgot-frm").validate();
 		});
 
-		// click the terms to show the cancellation fees
-		$("#term").click(function(){
-			alert("Please notice! If you cancel the booking with 24 hours leading up to the appointment, you will be charged $20 late cancellation fee!");
-		  });
 	</script>
 
 

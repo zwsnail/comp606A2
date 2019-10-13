@@ -1,6 +1,6 @@
 <?php
-require_once "../helper/autoloader.php";
 session_start();
+include_once "../autoload.php";
 
 
 $username = $_POST['name'];
