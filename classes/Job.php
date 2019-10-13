@@ -5,7 +5,7 @@
 class Job extends Database
 {
 
-    public function create_job($user_id,$location, $description, $price, $start, $expire) 
+    public function create_job($user_id, $location, $description, $price, $start, $expire) 
     {
       
         $user_id = $_SESSION['uid'];
@@ -98,27 +98,34 @@ class Job extends Database
         <th>Job Expire Date</th>
         <th>Any Trademan Interested?</th>
         <th>Trademan's ID(if someone bid)</th>
+        <th></th>
         </tr>
         </thead>
         <tbody>
         <?php
-     
-        while($res = $result->fetch(PDO::FETCH_ASSOC))
+
+        $_SESSION['job_id'] = array();
+        
+        // while($res = $result->fetch(PDO::FETCH_ASSOC))
+        // {
+        foreach ($result as $key => $res) 
         {
-            
             ?>
-            
             <div class="container-fluid">
                 
                 <tr>
                 <td><?= $res['job_id']; ?> </td>
                 <td><?= $res['user_id']; ?> </td>
                 <td><?= $res['job_location']; ?> </td>
+                <td><?= $res['job_description']; ?> </td>
                 <td><?= $res['job_price']; ?> </td>
                 <td><?= $res['job_start_date']; ?> </td>
                 <td><?= $res['job_expire_date']; ?> </td> 
                 <td><?= $res['job_status']; ?> </td>
                 <td><?= $res['trademan_id']; ?> </td>
+                <td><a href="edit.php?job_id=<?php echo $res['job_id']?>">Edit</a> 
+                | <a href="include/customer_delete.inc.php?job_id=<?php echo $res['job_id']?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>	
+
                 </tr>
             </div>
 
@@ -127,7 +134,22 @@ class Job extends Database
         </tbody>
         </table>
         <?php
+
     }
+
+
+    public function customer_delete_job($job_id) 
+    {
+        // session_start();
+  
+        //AND `job`.`user_id` = $uid"
+        $sql = "DELETE FROM `job` WHERE `job`.`job_id` = $job_id";
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        
+
+    }
+
 
     public function trademan_view_job($user_id) 
     {
@@ -291,23 +313,6 @@ class Job extends Database
         $result = $this->db->prepare($sql);
         $result->execute();
         
-        
-
-        
-            //if(!$res['job_status'] == 'Got bid')
-            //{
-                //echo '<td><a href="../bid.php"><button>Bid</button></td></a>';
-            //}else{
-                //echo 'You have bid this job';
-            //}
-
-        
-            
-            
-            
-
-
-
 
     }
 

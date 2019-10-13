@@ -10,7 +10,7 @@ $start = $_POST['start'];
 $expire = $_POST['expire'];
 
 
-var_dump($uid);
+
 if(isset($_SESSION['uid']))   
 { 
     $job = new Job;

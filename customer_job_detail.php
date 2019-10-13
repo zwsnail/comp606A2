@@ -21,6 +21,7 @@ if(isset($login) && $login == 'customer')
     <h1 class="">Hi! <?php echo $name;?></h1>
 
     <h2 class="">Those Jobs are You Created:</h2>
+   
     </div>
     <!-- display the jobs -->
     <?php
