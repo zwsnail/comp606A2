@@ -48,7 +48,10 @@
         echo '<a href="home.php"><button type="submit" class="btn btn-outline-warning text-right" name="loginbtn">Logout</button></a>';
     }
 
-  
   ?>
+
+    <a class="nav-link text-right" href="admin_login.php"><button class="btn btn-outline-warning text-right">admin</button></a>
+  
+
   </div>
 </nav>

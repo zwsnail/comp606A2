@@ -22,7 +22,7 @@
 
 		<div class="row">
 			<div class="col-lg-4 offset-lg-4 bg-light rounded" id="login-box">
-				<h2 class="text-center mt-2">Login</h2>
+				<h2 class="text-center mt-2">Customer/Trademan Login</h2>
 				<form action="include/login.inc.php" method="post" role="form" class="p-2" id="login-frm">
 					<div class="form-group">
 						<input type="text" name="username" class="form-control" placeholder="Username" required minlength="3">

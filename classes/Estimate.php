@@ -40,6 +40,7 @@ class Estimate extends Database
         <th>Total Cost</th>
         <th>Job Start Date</th>
         <th>Job Expire Date</th>
+        <th></th>
 
         <!-- <th>Contact</th> -->
 
@@ -48,7 +49,7 @@ class Estimate extends Database
         <tbody>
         <?php
      
-        while($res = $result->fetch(PDO::FETCH_ASSOC))
+        foreach ($result as $key => $res)
         {
             
             ?>
@@ -63,15 +64,12 @@ class Estimate extends Database
                 <td><?= $res['total_cost']; ?> </td>
                 <td><?= $res['starting_date']; ?> </td>
                 <td><?= $res['expiring_date']; ?> </td> 
-
-                <!-- <td><a href="bid.php"><button>Contact</button></td></a> -->
+                <td><a href="include/trademan_delete.inc.php?estimate_id=<?php echo $res['id']?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>	
+                
                 </tr>
             </div>
 
         <?php
-        // $_SESSION['uid'] = $res['uid'];
-        // $_SESSION['name'] = $res['name'];
-        // $_SESSION['type'] = $res['type'];
         }?>
         </tbody>
         </table>
@@ -79,7 +77,12 @@ class Estimate extends Database
         return $result;
     }
 
-   
+    public function trademan_delete_job($estimate_id)
+    {
+        $sql = "DELETE FROM `estimate` WHERE `estimate`.`id` = $estimate_id";
+        $result = $this->db->prepare($sql);
+        $result->execute();
+    }
     
 
 

@@ -5,7 +5,7 @@ include_once "../autoload.php";
 
 
 
-$job_id = $_SESSION['job_id'];
+$job_id = $_GET['job_id'];
 
 $job = new Job;
 $job->admin_delete_job($job_id);

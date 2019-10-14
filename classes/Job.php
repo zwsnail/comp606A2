@@ -104,7 +104,7 @@ class Job extends Database
         <tbody>
         <?php
 
-        $_SESSION['job_id'] = array();
+       
         
         // while($res = $result->fetch(PDO::FETCH_ASSOC))
         // {
@@ -123,8 +123,8 @@ class Job extends Database
                 <td><?= $res['job_expire_date']; ?> </td> 
                 <td><?= $res['job_status']; ?> </td>
                 <td><?= $res['trademan_id']; ?> </td>
-                <td><a href="edit.php?job_id=<?php echo $res['job_id']?>">Edit</a> 
-                | <a href="include/customer_delete.inc.php?job_id=<?php echo $res['job_id']?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>	
+                <td><a href="customer_edit_job.php?job_id=<?php echo $res['job_id']?>&user_id=<?php echo $res['user_id']?>&job_location=<?php echo $res['job_location']?>&job_description=<?php echo $res['job_description']?>&job_price=<?php echo $res['job_price']?>&job_start_date=<?php echo $res['job_start_date']?>&job_expire_date=<?php echo $res['job_expire_date']?>">Edit</a> 
+                |<a href="include/customer_delete.inc.php?job_id=<?php echo $res['job_id']?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>	
 
                 </tr>
             </div>
@@ -135,6 +135,16 @@ class Job extends Database
         </table>
         <?php
 
+    }
+
+
+    public function customer_edit_job($job_id, $job_location, $job_description, $job_price, $job_start_date, $job_expire_date) 
+    {
+
+        $sql = "UPDATE job SET job_location = '$job_location', job_description = '$job_description', job_price = '$job_price', job_start_date = '$job_start_date', job_expire_date = '$job_expire_date' WHERE (job.job_id = '$job_id')";
+        $result = $this->db->prepare($sql);
+        $result->execute();
+       
     }
 
 
@@ -206,13 +216,8 @@ class Job extends Database
             //}else{
                 //echo 'You have bid this job';
             //}
-
-        
-            
+           
             ?> 
-            
-
-
 
                 </tr>
             </div>
@@ -254,7 +259,8 @@ class Job extends Database
 
         <?php
 
-        while($res = $result->fetch(PDO::FETCH_ASSOC))
+        // while($res = $result->fetch(PDO::FETCH_ASSOC))
+        foreach ($result as $key => $res) 
         {
 
             
@@ -272,32 +278,12 @@ class Job extends Database
                 <td><?= $res['job_expire_date']; ?> </td> 
                 <td><?= $res['job_status']; ?> </td>
                 <td><?= $res['trademan_id']; ?> </td>
-                
-                <td><a href="include/admin_delete.inc.php?$job_id=<?php echo $res['job_id'];?>"><button>Delete</button></td></a>
-            <?php
-            //if(!$res['job_status'] == 'Got bid')
-            //{
-                //echo '<td><a href="../bid.php"><button>Bid</button></td></a>';
-            //}else{
-                //echo 'You have bid this job';
-            //}
-
-            $_SESSION['job_id'] = $res['job_id'];
-            $job_id = $_SESSION['job_id'];
-        
-            
-            ?> 
-            
-
-
+                <td><a href="include/admin_delete.inc.php?job_id=<?php echo $res['job_id']?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>	
 
                 </tr>
             </div>
 
         <?php
-                   
-
-
         }?>
         </tbody>
         </table>
