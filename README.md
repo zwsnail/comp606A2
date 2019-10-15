@@ -1,6 +1,7 @@
 # comp606A2
 
 //delete the last one there is a bug
+//edit transfer issue
 //encrypted password needed
 //comment every page(first few words)
 //don't use root
