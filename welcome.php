@@ -1,15 +1,12 @@
 <?php
-include_once __DIR__ . "/autoload.php";
 session_start();
+include_once "autoload.php";
 include('header.php');
 
 
 
-
-
-
 $type = $_SESSION['type'];
-$uid = $_SESSION['uid'];
+$user_id = $_SESSION['uid'];
 $name = $_SESSION['name'];
 
 
@@ -29,7 +26,7 @@ else
 
     echo '<h2 class="">Are you looking for a job to do?</h2>
     <a href="trademan_bid_joblist.php"><button>View my bid job!</button></a>
-    <a href="customer_job_detail.php"><button>Job list</button></a>';
+    ';
 
 }
 ?>

@@ -37,9 +37,9 @@ class User extends Database
             $_SESSION['uid'] = $res['uid'];
             $_SESSION['name'] = $res['name'];
             $_SESSION['type'] = $res['type'];
-            $type = $_SESSION['type'];
-            $uid = $_SESSION['uid'];
-            $name = $_SESSION['name'];
+            // $type = $_SESSION['type'];
+            // $uid = $_SESSION['uid'];
+            // $name = $_SESSION['name'];
                         
             return true;
         }else
@@ -47,6 +47,48 @@ class User extends Database
 
     }
 
+    public function view_trademan_contact($trademan_id) 
+    {
+
+        $sql = "SELECT * FROM user WHERE (uid = '$trademan_id')";
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        ?>
+        <table class = "table table-hover">
+        <thead>
+        <tr>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th>Email</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+     
+        foreach ($result as $key => $res)
+        {
+            
+            ?>
+            
+            <div class="container-fluid">
+                
+                <tr>
+                <td><?= $res['name']; ?> </td>
+                <td><?= $res['mobile']; ?> </td>
+                <td><?= $res['email']; ?> </td>
+                
+                </tr>
+            </div>
+
+        <?php
+        }?>
+        </tbody>
+        </table>
+        <?php
+        return $result;
+
+    }
 
     public function admin_login($username, $password) 
     {

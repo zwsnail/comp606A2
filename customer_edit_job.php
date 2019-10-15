@@ -1,12 +1,13 @@
 <?php
-include_once "autoload.php";
 session_start();
+include_once "autoload.php";
 include('header.php');
 
+$type = $_SESSION['type'];
+$user_id = $_SESSION['uid'];
+$name = $_SESSION['name'];
+$job_id = $_SESSION['job_id'];
 
-
-$job_id = $_GET['job_id'];
-$user_id = $_GET['user_id'];
 
 $job_location = $_GET['job_location'];
 $job_description = $_GET['job_description'];
@@ -14,14 +15,6 @@ $job_price = $_GET['job_price'];
 $job_start_date = $_GET['job_start_date'];
 $job_expire_date = $_GET['job_expire_date'];
 
-$_SESSION['job_id'] = $job_id;
-$_SESSION['user_id'] = $user_id;
-var_dump($user_id);
-// $_SESSION['job_location'] = $job_location;
-// $_SESSION['job_description'] = $job_description;
-// $_SESSION['job_price'] = $job_price;
-// $_SESSION['job_start_date'] = $job_start_date;
-// $_SESSION['job_expire_date'] = $job_expire_date;
 
 
 

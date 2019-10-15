@@ -1,11 +1,6 @@
 <?php
-// include "classes/connection.php";
-// require_once "classes/User.php";
-// require_once "classes/Job.php";
-// require_once "classes/estimate.php";
-// include("helper/autoloader.php");
-
-include_once __DIR__ . "/autoload.php";
+session_start();
+include_once "autoload.php";
 include('header.php');
 
 ?>

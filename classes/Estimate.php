@@ -5,12 +5,11 @@
 class Estimate extends Database
 {
 
-    public function create_estimate($material_cost, $labor_cost, $total_cost, $starting_date, $expiring_date) 
+    public function create_estimate($job_id, $trademan_id, $material_cost, $labor_cost, $total_cost, $starting_date, $expiring_date) 
     {
-        $uid = $_SESSION['uid'];
-        $name = $_SESSION['name'];
 
-        $sql = "INSERT INTO estimate VALUES ('0', $uid, '$material_cost', '$labor_cost', '$total_cost', '$starting_date', '$expiring_date')";
+
+        $sql = "INSERT INTO estimate VALUES ('0',$job_id, $trademan_id, '$material_cost', '$labor_cost', '$total_cost', '$starting_date', '$expiring_date')";
         $result = $this->db->prepare($sql);
 
         if(!$result) die ("Not correct sql");
@@ -33,7 +32,8 @@ class Estimate extends Database
         <table class = "table table-hover">
         <thead>
         <tr>
-        <th>Estimate ID</th>
+
+        <th>Job ID</th>
         <th>trademan ID(Your ID)</th>
         <th>Material Cost</th>
         <th>Labor Cost</th>
@@ -57,7 +57,8 @@ class Estimate extends Database
             <div class="container-fluid">
                 
                 <tr>
-                <td><?= $res['id']; ?> </td>
+          
+                <td><?= $res['job_id']; ?> </td>
                 <td><?= $res['trademan_id']; ?> </td>
                 <td><?= $res['material_cost']; ?> </td>
                 <td><?= $res['labor_cost']; ?> </td>
