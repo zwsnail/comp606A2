@@ -1,10 +1,21 @@
 <?php 
+/*
+    This is Estimate class which extends from the Database class.
+    So that it can alway get connected with the database.
 
+    There are some function in it:
+
+    1.create_estimate()
+    2.view_estimate()
+    3.trademan_delete_job()
+
+*/
 
 
 class Estimate extends Database
 {
 
+    //This function is for trademan to create a bid 
     public function create_estimate($job_id, $trademan_id, $material_cost, $labor_cost, $total_cost, $starting_date, $expiring_date) 
     {
 
@@ -20,6 +31,7 @@ class Estimate extends Database
         return $result;
     }
 
+    //This function is for trademan to create a bid 
     public function view_estimate($uid)
     {
         $uid = $_SESSION['uid'];
@@ -78,6 +90,7 @@ class Estimate extends Database
         return $result;
     }
 
+    //This function is for trademan to delete his/her bid
     public function trademan_delete_job($estimate_id)
     {
         $sql = "DELETE FROM `estimate` WHERE `estimate`.`id` = $estimate_id";

@@ -51,16 +51,16 @@ $job_expire_date = $_GET['job_expire_date'];
 					<div class="input-group-prepend">
 						<span class="input-group-text">Details about the job</span>
 					</div>
-					<textarea name="description" class="form-control" value = <?php echo $job_description;?> aria-label="With textarea"></textarea>
+					<textarea name="description" class="form-control" value = "<?php echo $job_description;?>" aria-label="With textarea"></textarea>
 					</div>
 
 					<div class="form-group">
                     <p>What is the date when job will be active?</p>
-						<input type="date" name="start" class="form-control" value = <?php echo $Job_Start_Time;?> required>
+						<input type="date" name="start" class="form-control"  required>
 					</div>
 					<div class="form-group">
                     <p>What is the date when request for estimates finishes?</p>
-						<input type="date" name="expire" class="form-control" value = <?php echo $Job_Expire_Time;?> required>
+						<input type="date" name="expire" class="form-control"  required>
 					</div>
 					<div class="form-group">
 						<input type="submit" name="change_job" class="btn btn-primary btn-block">

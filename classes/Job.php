@@ -1,10 +1,27 @@
 <?php 
 
 
+/*
+    This is Job class which extends from the Database class.
+    So that it can alway get connected with the database.
+
+    There are some function in it:
+
+    1.create_job()
+    2.public_view_job()
+    3.customer_view_job()
+    4.customer_edit_job()
+    5.customer_delete_job()
+    6.trademan_view_job()
+    7.trademan_bid()
+    8.admin_view_job()
+    9.admin_delete_job()
+*/
+
 
 class Job extends Database
 {
-
+    //Customer can post job 
     public function create_job($user_id, $location, $description, $price, $start, $expire) 
     {
       
@@ -22,7 +39,7 @@ class Job extends Database
     }
 
    
-
+    //This function is for everyone can view all the job on home page no need to login
     public function public_view_job() 
     {
         $sql = "SELECT * FROM job";
@@ -76,7 +93,7 @@ class Job extends Database
         <?php
     }
 
-
+    //This function is for only login customer can view his/her own posted jobs
     public function customer_view_job($user_id) 
     {
         // $user_id = $_SESSION['uid'];
@@ -140,7 +157,7 @@ class Job extends Database
                 $_SESSION['trademan_id'] = $res['trademan_id'];
     }
 
-
+    //This function is for login customer to edit his/her posted jobs
     public function customer_edit_job($job_id, $job_location, $job_description, $job_price, $job_start_date, $job_expire_date) 
     {
 
@@ -154,7 +171,7 @@ class Job extends Database
        
     }
 
-
+    //This function is for login customer to delete his/her posted jobs
     public function customer_delete_job($job_id) 
     {
         // session_start();
@@ -167,7 +184,8 @@ class Job extends Database
 
     }
 
-
+    //This function is for login trademan to view all posted jobs 
+    //Plus he/she can bid the job!
     public function trademan_view_job($user_id) 
     {
        
@@ -231,6 +249,8 @@ class Job extends Database
                     $_SESSION['user_id'] = $res['user_id'];
     }
 
+    //This function is for login trademan to bit the posted jobs if he/she wants
+    //After bidding, the job status will get changed accordingly recording trademan's ID
     public function trademan_bid($trademan_id, $user_id)
     {
         
@@ -245,7 +265,8 @@ class Job extends Database
         return $result;
     }
 
-
+    //The admin also can view all jobs like other non-logged customer
+    //But admin can delete any job if it contains some inappropriate content
     public function admin_view_job() 
     {
         // session_start();
@@ -308,6 +329,7 @@ class Job extends Database
     }
 
 
+    //This function is for Admin deletes any job if it contains some inappropriate content
     public function admin_delete_job($job_id) 
     {
         // session_start();

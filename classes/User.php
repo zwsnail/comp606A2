@@ -1,10 +1,21 @@
 <?php 
+/*
+    This is User class which extends from the Database class.
+    So that it can alway get connected with the database.
 
+    There are some function in it:
+
+    1.register()
+    2.login()
+    3.view_trademan_contact()
+    4.admin_login()
+
+*/
 
 
 class User extends Database
 {
-
+    //This function is for register
     public function register($username, $mobile, $email, $type, $password) 
     {
 
@@ -20,6 +31,8 @@ class User extends Database
 
     }
 
+    //This function is for login
+    //Customer and Trademan are in same 'user' table, but one column named 'type' is different
     public function login($username, $password) 
     {
 
@@ -47,6 +60,7 @@ class User extends Database
 
     }
 
+    //This function is for a customer to contact with a trademan who bid he/her posted job
     public function view_trademan_contact($trademan_id) 
     {
 
@@ -89,7 +103,8 @@ class User extends Database
         return $result;
 
     }
-
+    
+    //This function is for an admin to login so that he/she could delete some inappropriate posted job
     public function admin_login($username, $password) 
     {
 
