@@ -10,7 +10,7 @@ $mobile = $_POST['mob_number'];
 $email = $_POST['email'];
 $type = $_POST['type'];
 $_SESSION['type'] = $type;
-$password = $_POST['pass'];
+$password =  md5($_POST['pass']);
 
 $user = new User;
 $user->register($username, $mobile, $email, $type, $password);
