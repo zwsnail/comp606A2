@@ -5,7 +5,7 @@ include_once "../autoload.php";
 
 
 $username = $_POST['username'];
-$password = $_POST['password'];  
+$password = md5($_POST['password']);  
 // var_dump($username);
 
 
