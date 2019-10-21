@@ -1,26 +1,14 @@
 <?php 
-/*
-    This is Estimate class which extends from the Database class.
-    So that it can alway get connected with the database.
-
-    There are some function in it:
-
-    1.create_estimate()
-    2.view_estimate()
-    3.trademan_delete_job()
-
-*/
-
 
 class Estimate extends Database
 {
 
-    //This function is for trademan to create a bid 
     public function create_estimate($job_id, $trademan_id, $material_cost, $labor_cost, $total_cost, $starting_date, $expiring_date) 
     {
+        $uid = $_SESSION['uid'];
+        $name = $_SESSION['name'];
 
-
-        $sql = "INSERT INTO estimate VALUES ('0',$job_id, $trademan_id, '$material_cost', '$labor_cost', '$total_cost', '$starting_date', '$expiring_date')";
+        $sql = "INSERT INTO estimate VALUES ('0', '$job_id', '$trademan_id', '$material_cost', '$labor_cost', '$total_cost', '$starting_date', '$expiring_date')";
         $result = $this->db->prepare($sql);
 
         if(!$result) die ("Not correct sql");
@@ -31,7 +19,6 @@ class Estimate extends Database
         return $result;
     }
 
-    //This function is for trademan to create a bid 
     public function view_estimate($uid)
     {
         $uid = $_SESSION['uid'];
@@ -44,15 +31,13 @@ class Estimate extends Database
         <table class = "table table-hover">
         <thead>
         <tr>
-
-        <th>Job ID</th>
+        <th>Estimate ID</th>
         <th>trademan ID(Your ID)</th>
         <th>Material Cost</th>
         <th>Labor Cost</th>
         <th>Total Cost</th>
         <th>Job Start Date</th>
         <th>Job Expire Date</th>
-        <th></th>
 
         <!-- <th>Contact</th> -->
 
@@ -61,7 +46,7 @@ class Estimate extends Database
         <tbody>
         <?php
      
-        foreach ($result as $key => $res)
+        while($res = $result->fetch(PDO::FETCH_ASSOC))
         {
             
             ?>
@@ -69,20 +54,22 @@ class Estimate extends Database
             <div class="container-fluid">
                 
                 <tr>
-          
-                <td><?= $res['job_id']; ?> </td>
+                <td><?= $res['id']; ?> </td>
                 <td><?= $res['trademan_id']; ?> </td>
                 <td><?= $res['material_cost']; ?> </td>
                 <td><?= $res['labor_cost']; ?> </td>
                 <td><?= $res['total_cost']; ?> </td>
                 <td><?= $res['starting_date']; ?> </td>
                 <td><?= $res['expiring_date']; ?> </td> 
-                <td><a href="include/trademan_delete.inc.php?estimate_id=<?php echo $res['id']?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>	
-                
+
+                <!-- <td><a href="bid.php"><button>Contact</button></td></a> -->
                 </tr>
             </div>
 
         <?php
+        // $_SESSION['uid'] = $res['uid'];
+        // $_SESSION['name'] = $res['name'];
+        // $_SESSION['type'] = $res['type'];
         }?>
         </tbody>
         </table>
@@ -90,13 +77,7 @@ class Estimate extends Database
         return $result;
     }
 
-    //This function is for trademan to delete his/her bid
-    public function trademan_delete_job($estimate_id)
-    {
-        $sql = "DELETE FROM `estimate` WHERE `estimate`.`id` = $estimate_id";
-        $result = $this->db->prepare($sql);
-        $result->execute();
-    }
+   
     
 
 
