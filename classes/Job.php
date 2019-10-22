@@ -123,8 +123,6 @@ class Job extends Database
 
        
         
-        // while($res = $result->fetch(PDO::FETCH_ASSOC))
-        // {
         foreach ($result as $key => $res) 
         {
             ?>
@@ -152,9 +150,14 @@ class Job extends Database
         }?>
         </tbody>
         </table>
+        
         <?php
+            if(isset($res))
+            {
                 $_SESSION['job_id'] = $res['job_id'];
                 $_SESSION['trademan_id'] = $res['trademan_id'];
+            
+            }
     }
 
     //This function is for login customer to edit his/her posted jobs
