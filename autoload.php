@@ -1,8 +1,10 @@
 <?php
 
-// spl_autoload_register(function ($class_name) {
-//     include 'classes/'.$class_name.'.php';
-// });
+/*
+    This php is for autoloading all classes at once.
+    In this way '__DIR__', it can avoid the pathway error (no matter the using page is in any folder,
+    it's relative pathway).
+*/
 
 
 function my_autoload ($pClassName) {
