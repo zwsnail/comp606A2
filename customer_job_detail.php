@@ -19,12 +19,12 @@ $name = $_SESSION['name'];
 if(isset($type) && $type == 'customer')
 {
 ?>
-    <div class="">
-    <h1 class="">Hi! <?php echo $name;?></h1>
-
-    <h2 class="">Those Jobs are You Created:</h2>
-   
+    <div class="container text-center">
+    <h1 class="font-weight-bold text-primary">Hi! <?php echo $name;?></h1>
+    <h2 class="font-italic text-success">Those Jobs are You Created:</h2>
+    <a href="create_job.php"><button class="btn btn-outline-primary"> Create more jobs!</button></a> 
     </div>
+    <br>
     <!-- display the jobs -->
     <?php
     $job = new Job;

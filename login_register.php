@@ -9,7 +9,6 @@ include('header.php');
 	<meta name="viewport" content="width=device-wideth,initial-scale=1">
 	<title>User Registration & Login System</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonyous">
-	<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
 	<style type="text/css">
 		#alert, #register-box, #forgot-box{
 			display: none;
@@ -18,6 +17,14 @@ include('header.php');
 </head>
 
 <body>  
+	<?php 
+	if(isset($_GET['error']))
+	{
+		echo '<p class="bg-danger text-white text-center"> Wrong Password or Username. Please try again :)<p>';
+	}; 
+	?>
+
+
 	<div class="container mt-4">
 
 		<!-- login form -->
@@ -71,15 +78,6 @@ include('header.php');
 					<div class="form-group">
 					<label><input type="radio" name="type" class=".radio-inline" value="customer" required> Customer</label>
 					<label><input type="radio" name="type" class=".radio-inline" value="trademan" required> Trademan</label>
-
-						<!-- <div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" value="customer" name="type" class="custom-control-input">
-						<label class="custom-control-label" for="type">Customer</label>
-						</div>
-						<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" value="trademan" name="type" class="custom-control-input">
-						<label class="custom-control-label" for="type">Trademan</label>
-						</div> -->
 
 					</div>
 					<div class="form-group">

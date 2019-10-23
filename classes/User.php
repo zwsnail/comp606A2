@@ -55,8 +55,8 @@ class User extends Database
             // $name = $_SESSION['name'];
                         
             return true;
-        }else
-        die ("Not correct sql");
+        }
+        
 
     }
 

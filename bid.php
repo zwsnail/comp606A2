@@ -1,7 +1,13 @@
 <?php
+/*
+    This page displays a form for trademan to fill a bid form
+*/
 session_start();
 include('header.php');
 
+$_SESSION['job_id'] = $_GET['job_id'];
+// $job_id = $_SESSION['job_id'];
+// var_dump($job_id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +19,8 @@ include('header.php');
 		<div class="row">
 			<div class="col-lg-4 offset-lg-4 bg-light rounded" id="register-box">
 				<h2 class="text-center mt-2">Create a bid for the job!</h2>
-				<form action="include/bid.inc.php?<?php echo '$user_id'?>" method="post" role="form" class="p-2" id="register-frm">
-			
+				<form action="include/bid.inc.php" method="post" role="form" class="p-2" id="register-frm">
+                
 						<p>How much estimating cost for the material?</p>
 
                     <div class="input-group mb-3">

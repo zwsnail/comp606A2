@@ -10,8 +10,8 @@ class Database
 
   public function  __construct()
   {
-    $username = "root";
-    $password = "";
+    $username = "comp606A2";
+    $password = "123";
     $servername = "localhost";
 
     try 

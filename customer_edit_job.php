@@ -1,4 +1,8 @@
 <?php
+/*
+	This page display customer changes the job details
+	Maintain the old information in the form as placeholder for customer to reconsider it
+*/
 session_start();
 include_once "autoload.php";
 include('header.php');

@@ -1,15 +1,21 @@
 <?php 
+/*
+    This page receives bid information.
+    Then use the class Job 'create_estimate' function to create a bid in the database
+    Then use the class Job 'trademan_bid' function to change the job status from "No one bit" to "Got a bid"
+*/
 session_start();
 require_once "../autoload.php";
 
 $job_id= $_SESSION['job_id'];
+// var_dump($job_id);
 
 $user_id = $_SESSION['user_id'];
-var_dump($user_id);
+// var_dump($user_id);
 $name = $_SESSION['name'];
 
 $trademan_id = $_SESSION['uid'];
-var_dump($trademan_id);
+// var_dump($trademan_id);
 
 $material_cost = $_POST['material_price'];
 $labor_cost = $_POST['labor_price'];
@@ -20,6 +26,6 @@ $expiring_date = $_POST['expire_time'];
 $estimate = new Estimate;
 $estimate->create_estimate($job_id, $trademan_id, $material_cost, $labor_cost, $total_cost, $starting_date, $expiring_date) ;
 $job = new Job;
-$job->trademan_bid($trademan_id, $user_id);
+$job->trademan_bid($job_id, $trademan_id, $user_id);
 
-header("Location: ../trademan_bid_joblist.php");
+header("Location: ../trademan_bid_joblist.php?bid=$name");

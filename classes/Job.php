@@ -234,30 +234,31 @@ class Job extends Database
                 <td><?= $res['job_start_date']; ?> </td>
                 <td><?= $res['job_expire_date']; ?> </td> 
                 <td><?= $res['job_status']; ?> </td>
-              
-                <td><a href="bid.php"><button>Bid</button></td></a>
-            <?php
-            ?> 
-
+                <td><a href="bid.php?job_id=<?php echo $res['job_id']?>"><button class="btn btn-outline-primary">Bid</button></td></a>
                 </tr>
             </div>
 
-        <?php
+            <?php
 
         }?>
         </tbody>
         </table>
         <?php
-                    $_SESSION['job_id'] = $res['job_id'];
+                if(isset($res))
+                {
+                    // $_SESSION['job_id'] = $res['job_id'];
                     $_SESSION['user_id'] = $res['user_id'];
+                
+                }
+ 
     }
 
     //This function is for login trademan to bit the posted jobs if he/she wants
     //After bidding, the job status will get changed accordingly recording trademan's ID
-    public function trademan_bid($trademan_id, $user_id)
+    public function trademan_bid($job_id, $trademan_id, $user_id)
     {
-        
-        $sql = "UPDATE job SET `job_status`= 'Got bid', `trademan_id`= $trademan_id WHERE `user_id`= $user_id";
+        //`user_id`= $user_id and 
+        $sql = "UPDATE job SET `job_status`= 'Got bid', `trademan_id`= $trademan_id WHERE `job_id`= $job_id";
         $result = $this->db->prepare($sql);
 
         if(!$result) die ("Not correct sql");
@@ -265,7 +266,8 @@ class Job extends Database
         {
             $result->execute();
         }
-        return $result;
+        // return $result;
+        
     }
 
     //The admin also can view all jobs like other non-logged customer
