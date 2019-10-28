@@ -27,7 +27,7 @@ if(isset($type) && $type == 'customer')
 }
 else
 {
-
+    
     echo '<h2 class="font-italic text-success">Are you looking for a job to do?</h2>
     <a href="trademan_bid_joblist.php"><button class="btn btn-outline-primary"> Bid job!</button></a>
     ';
@@ -35,5 +35,5 @@ else
 }
 
 
-echo '</div>';
+
 

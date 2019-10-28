@@ -28,7 +28,7 @@ $expiring_date = $_POST['expire_time'];
 
 $estimate = new Estimate;
 $estimate->create_estimate($job_id, $trademan_id, $material_cost, $labor_cost, $total_cost, $starting_date, $expiring_date) ;
-$job = new Job;
-$job->trademan_bid($job_id, $trademan_id, $user_id, $job_status);
+// $job = new Job;
+// $job->trademan_bid($job_id, $trademan_id, $user_id, $job_status);
 
 header("Location: ../trademan_bid_joblist.php?bid=$name");

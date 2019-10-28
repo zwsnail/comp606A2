@@ -13,9 +13,8 @@
     4.customer_edit_job()
     5.customer_delete_job()
     6.trademan_view_job()
-    7.trademan_bid()
-    8.admin_view_job()
-    9.admin_delete_job()
+    7.admin_view_job()
+    8.admin_delete_job()
 */
 
 
@@ -47,6 +46,7 @@ class Job extends Database
         $result->execute();
         
         ?>
+        <div>
         <table class = "table table-hover table-sm table-light table-striped">
         <thead class="table-success">
         <tr>
@@ -58,7 +58,7 @@ class Job extends Database
         <th>Job Start Date</th>
         <th>Job Expire Date</th>
         <th>Any Trademan Interested?</th>
-        <th>Trademan's ID(if someone bid)</th>
+      
 
         </tr>
         </thead>
@@ -81,7 +81,7 @@ class Job extends Database
                 <td><?= $res['job_start_date']; ?> </td>
                 <td><?= $res['job_expire_date']; ?> </td> 
                 <td><?= $res['job_status']; ?> </td>
-                <td><?= $res['trademan_id']; ?> </td>
+       
 
                 </tr>
             </div>
@@ -103,6 +103,7 @@ class Job extends Database
         $result->execute();
         
         ?>
+        
         <table class = "table table-hover table-sm table-light table-striped">
         <thead class = "table-success">
         <tr>
@@ -208,22 +209,16 @@ class Job extends Database
         <th>Job Start Date</th>
         <th>Job Expire Date</th>
         <th>Any Trademan Interested?</th>
-
         <th>Give a Bid</th>
-
         </tr>
         </thead>
         <tbody>
-
         <?php
 
         foreach ($result as $key => $res) 
-        {
-            
-            ?>
-            
+        {    
+            ?> 
             <div class="container-fluid">
-                
                 <tr>
                 <td><?= $res['job_id']; ?> </td>
                 <td><?= $res['user_id']; ?> </td>
@@ -233,12 +228,30 @@ class Job extends Database
                 <td><?= $res['job_start_date']; ?> </td>
                 <td><?= $res['job_expire_date']; ?> </td> 
                 <td><?= $res['job_status']; ?> </td>
+
+
+                <!-- if trademan alreay bid the same job, the bit button will be disabled -->
+
+            <?php
+            //first check if the trademan bid or not
+            $sql1 = "SELECT * FROM `estimate` WHERE `trademan_id`= $user_id";
+            $result1 = $this->db->prepare($sql1);
+            $result1->execute();
+            $res1 = $result1->fetch(PDO::FETCH_ASSOC);
+            // button disabled
+            if($res1['trademan_id'] == $user_id && $res['job_status'] == 'Got bid' && $res1['job_id']== $res['job_id'] )
+            {?>
+                <td><a href="bid.php?job_id=<?php echo $res['job_id']?>&job_status=<?php echo $res['job_status']?>"><button disabled class="btn btn-outline-primary">Already Bid</button></td></a>
+            <?php
+            }else{ // button OK
+            ?>
                 <td><a href="bid.php?job_id=<?php echo $res['job_id']?>&job_status=<?php echo $res['job_status']?>"><button class="btn btn-outline-primary">Bid</button></td></a>
+              
                 </tr>
             </div>
 
             <?php
-
+            }
         }?>
         </tbody>
         </table>
@@ -252,24 +265,6 @@ class Job extends Database
  
     }
 
-    //This function is for login trademan to bit the posted jobs if he/she wants
-    //After bidding, the job status will get changed accordingly recording trademan's ID
-    public function trademan_bid($job_id, $trademan_id, $user_id, $job_status)
-    {
-        if($job_status = 'Not one bid yet')
-        {
-            $sql = "UPDATE job SET `job_status`= 'Got bid', `trademan_id`= $trademan_id WHERE `job_id`= $job_id";
-            $result = $this->db->prepare($sql);
-            $result->execute();
-        }
-        // else
-        // {
-        //     $sql = "INSERT INTO `job` (`trademan_id`) VALUES $trademan_id";
-        //     $result = $this->db->prepare($sql);
-        //     $result->execute();
-        // }
-        
-    }
 
     //The admin also can view all jobs like other non-logged customer
     //But admin can delete any job if it contains some inappropriate content

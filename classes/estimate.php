@@ -19,16 +19,28 @@ class Estimate extends Database
     public function create_estimate($job_id, $trademan_id, $material_cost, $labor_cost, $total_cost, $starting_date, $expiring_date) 
     {
   
+        //first count how many bid for a job
+        $sql2 = "SELECT count(*) FROM `estimate` WHERE `job_id` =$job_id";
+        $result2 = $this->db->prepare($sql2);
+        $result2->execute();
 
+        $rows = $result2->fetchAll( PDO::FETCH_COLUMN, 0);
+        $row = $rows[0];
+
+        // if there is no bid for one job,  
+        //job_status will change from "No bid yet" into "Got bid" and add the job id
+        if($row == 0)
+        {
+            $sql1 = "UPDATE job SET `job_status`= 'Got bid', `trademan_id`= $trademan_id WHERE `job_id`= $job_id";
+            $result1 = $this->db->prepare($sql1);
+            $result1->execute();
+        }
+
+        //if there is alreay bid, then no need to change the job status, just add a bid
         $sql = "INSERT INTO estimate VALUES ('0', '$job_id', '$trademan_id', '$material_cost', '$labor_cost', '$total_cost', '$starting_date', '$expiring_date')";
         $result = $this->db->prepare($sql);
+        $result->execute();
 
-        if(!$result) die ("Not correct sql");
-        else
-        {
-            $result->execute();
-        }
-        return $result;
     }
 
     public function trademan_view_estimate($uid)
@@ -74,7 +86,7 @@ class Estimate extends Database
                 <td><?= $res['total_cost']; ?> </td>
                 <td><?= $res['starting_date']; ?> </td>
                 <td><?= $res['expiring_date']; ?> </td> 
-                <td><a href="include/estimate_delete.inc.php?id=<?php echo $res["id"];?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+                <td><a href="include/estimate_delete.inc.php?id=<?php echo $res["id"];?>&job_id=<?php echo $res["job_id"];?>&job_status=<?php echo $res["job_status"];?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>
                 </tr>
             </div>
 
@@ -89,11 +101,33 @@ class Estimate extends Database
         return $result;
     }
 
-    public function trademan_delete_job($estimate_id)
+    public function trademan_delete_bid($estimate_id, $job_id)
     {
+        //delete the bid 
         $sql = "DELETE FROM `estimate` WHERE `estimate`.`id` = $estimate_id";
         $result = $this->db->prepare($sql);
         $result->execute();
+
+
+        // but need to check job status
+        //if there is no more bid for one job, after delete the bid, 
+        //job_status will change back to "no one bid yet"
+        $sql2 = "SELECT count(*) FROM `estimate` WHERE `job_id` =$job_id";
+        $result2 = $this->db->prepare($sql2);
+        $result2->execute();
+        $rows = $result2->fetchAll( PDO::FETCH_COLUMN, 0);
+        $row = $rows[0];
+
+        if($row == 0)
+        {
+            $sql1 = "UPDATE job SET `job_status`= 'No one bid yet', `trademan_id`= 0 WHERE `job_id`= $job_id";
+            $result1 = $this->db->prepare($sql1);
+            $result1->execute();
+        
+        }
+
+ 
+
     }
 
     public function customer_view_estimate($job_id)
