@@ -114,7 +114,7 @@ class Job extends Database
         <th>Job Start Date</th>
         <th>Job Expire Date</th>
         <th>Any Trademan Interested?</th>
-        <th>Trademan's ID(if someone bid)</th>
+        <!-- <th>Trademan's ID(if someone bid)</th> -->
         <th></th>
         </tr>
         </thead>
@@ -136,8 +136,7 @@ class Job extends Database
                 <td><?= $res['job_price']; ?> </td>
                 <td><?= $res['job_start_date']; ?> </td>
                 <td><?= $res['job_expire_date']; ?> </td> 
-                <td><?= $res['job_status']; ?> </td>
-                <td><a href="trademan_contact.php?trademan_id=<?php echo $res['trademan_id']?>"><?= $res['trademan_id']; ?></a></td>
+                <td><a href="view_bids_for_one_job.php?job_id=<?php echo $res['job_id']?>&job_description=<?php echo $res['job_description']?>&job_status=<?php echo $res['job_status']?>"><?= $res['job_status']; ?> </td>
                 <td><a href="customer_edit_job.php?job_id=<?php echo $res['job_id']?>&user_id=<?php echo $res['user_id']?>&job_location=<?php echo $res['job_location']?>&job_description=<?php echo $res['job_description']?>&job_price=<?php echo $res['job_price']?>&job_start_date=<?php echo $res['job_start_date']?>&job_expire_date=<?php echo $res['job_expire_date']?>">Edit</a> 
                 |<a href="include/customer_delete.inc.php?job_id=<?php echo $res['job_id']?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>	
 
@@ -263,14 +262,12 @@ class Job extends Database
             $result = $this->db->prepare($sql);
             $result->execute();
         }
-        else
-        {
-            $sql = "INSERT INTO `job` (`trademan_id`) VALUES $trademan_id";
-            $result = $this->db->prepare($sql);
-            $result->execute();
-        }
-
-       
+        // else
+        // {
+        //     $sql = "INSERT INTO `job` (`trademan_id`) VALUES $trademan_id";
+        //     $result = $this->db->prepare($sql);
+        //     $result->execute();
+        // }
         
     }
 

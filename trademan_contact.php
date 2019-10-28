@@ -10,10 +10,11 @@ echo '<div class="p-3 mb-2 bg-danger text-white">Please respect people\'s privac
 
 if($trademan_id != 0)
 {
+    echo '<div class="container text-center">';
+    echo '<h4 class="text-dark">Good luck!</h6>';
     $trademan = new User;
     $trademan ->view_trademan_contact($trademan_id);
-    $bid = new Estimate;
-    $bid->customer_view_estimate($customerid);
+
 }else{
     echo '<div class="container text-center">';
     echo '<h4 class="text-dark">So far no one bid this job yet ￣へ￣</h6>';

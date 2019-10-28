@@ -23,7 +23,7 @@ if(isset($type) && $type == 'customer')
     <h1 class="font-weight-bold text-primary">Hi! <?php echo $name;?></h1>
     <h2 class="font-italic text-success">Those Jobs are You Created:</h2>
     <a href="create_job.php"><button class="btn btn-outline-primary"> Create more jobs!</button></a> 
-    </div>
+    <br>
     <br>
     <!-- display the jobs -->
     <?php
