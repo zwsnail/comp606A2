@@ -39,8 +39,8 @@ class Estimate extends Database
         $result = $this->db->prepare($sql);
         $result->execute();
         ?>
-        <table class = "table table-hover">
-        <thead>
+        <table class = "table table-hover table-sm table-light table-striped">
+        <thead class="table-success">
         <tr>
         <th>Job ID</th>
         <th>trademan ID(Your ID)</th>

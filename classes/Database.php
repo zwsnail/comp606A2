@@ -1,11 +1,9 @@
 <?php
 
+/*
+    This is Database class connects with the database
 
-// session_start();
-// $db = mysqli_connect("localhost","root","","safe_trade");
-// mysqli_select_db($db, "safe_trade");
-
-
+*/
 
 class Database
 {
@@ -13,8 +11,8 @@ class Database
 
   public function  __construct()
   {
-    $username = "root";
-    $password = "";
+    $username = "comp606A2";
+    $password = "123";
     $servername = "localhost";
 
     try 

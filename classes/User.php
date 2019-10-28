@@ -68,8 +68,8 @@ class User extends Database
         $result = $this->db->prepare($sql);
         $result->execute();
         ?>
-        <table class = "table table-hover">
-        <thead>
+        <table class = "table table-hover table-sm table-light table-striped">
+        <thead class = "table-success">
         <tr>
         <th>Name</th>
         <th>Mobile</th>
@@ -86,7 +86,6 @@ class User extends Database
             ?>
             
             <div class="container-fluid">
-                
                 <tr>
                 <td><?= $res['name']; ?> </td>
                 <td><?= $res['mobile']; ?> </td>

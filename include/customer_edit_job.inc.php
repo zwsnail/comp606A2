@@ -3,7 +3,7 @@ session_start();
 include_once "../autoload.php";
 
 
-$job_id = $_SESSION['job_id'];
+$job_id = $_GET['job_id'];
 
 
 
@@ -31,8 +31,9 @@ if(isset($_POST['change_job']))
 
     // var_dump($user_id);
     // var_dump($name);
+    // var_dump($job_id);
 
-    // header("Location: ../customer_job_datail.php");
+
     header("Location: ../welcome.php");
 
 

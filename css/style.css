@@ -12,8 +12,13 @@ div#register-box {
     width: 100px;
     height: 100px;
 } */
-
+/* 
 h1 {
     font: font-weight-bold; 
     color: text-primary;
+} */
+
+table {
+    width:  1250px;
+    padding: 20px;
 }

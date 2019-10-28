@@ -20,7 +20,7 @@ include('header.php');
 	<?php 
 	if(isset($_GET['error']))
 	{
-		echo '<p class="bg-danger text-white text-center"> Wrong Password or Username. Please try again :)<p>';
+		echo '<p id="error" class="bg-danger text-white text-center"> Wrong Password or Username. Please try again :)<p>';
 	}; 
 	?>
 
@@ -155,6 +155,7 @@ include('header.php');
 		   $("#register-btn").click(function(){
 		  	$("#login-box").hide();
 		  	$("#register-box").show();
+			$("#error").hide();
 		  });
 		   	$("#login-btn").click(function(){
 		  	$("#login-box").show();

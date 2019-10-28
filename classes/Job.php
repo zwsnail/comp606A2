@@ -47,8 +47,8 @@ class Job extends Database
         $result->execute();
         
         ?>
-        <table class = "table table-hover">
-        <thead>
+        <table class = "table table-hover table-sm table-light table-striped">
+        <thead class="table-success">
         <tr>
         <th>Job ID</th>
         <th>Creater Customer ID</th>
@@ -103,8 +103,8 @@ class Job extends Database
         $result->execute();
         
         ?>
-        <table class = "table table-hover">
-        <thead>
+        <table class = "table table-hover table-sm table-light table-striped">
+        <thead class = "table-success">
         <tr>
         <th>Job ID</th>
 
@@ -137,7 +137,7 @@ class Job extends Database
                 <td><?= $res['job_start_date']; ?> </td>
                 <td><?= $res['job_expire_date']; ?> </td> 
                 <td><?= $res['job_status']; ?> </td>
-                <td><a href="trademan_contact.php"><?= $res['trademan_id']; ?></a></td>
+                <td><a href="trademan_contact.php?trademan_id=<?php echo $res['trademan_id']?>"><?= $res['trademan_id']; ?></a></td>
                 <td><a href="customer_edit_job.php?job_id=<?php echo $res['job_id']?>&user_id=<?php echo $res['user_id']?>&job_location=<?php echo $res['job_location']?>&job_description=<?php echo $res['job_description']?>&job_price=<?php echo $res['job_price']?>&job_start_date=<?php echo $res['job_start_date']?>&job_expire_date=<?php echo $res['job_expire_date']?>">Edit</a> 
                 |<a href="include/customer_delete.inc.php?job_id=<?php echo $res['job_id']?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>	
 
@@ -154,7 +154,7 @@ class Job extends Database
         <?php
             if(isset($res))
             {
-                $_SESSION['job_id'] = $res['job_id'];
+                // $_SESSION['job_id'] = $res['job_id'];
                 $_SESSION['trademan_id'] = $res['trademan_id'];
             
             }
@@ -198,8 +198,8 @@ class Job extends Database
         $result->execute();
         
         ?>
-        <table class = "table table-hover">
-        <thead>
+        <table class = "table table-hover table-sm table-light table-striped">
+        <thead class = "table-success">
         <tr>
         <th>Job ID</th>
         <th>Creater Customer ID</th>
@@ -234,7 +234,7 @@ class Job extends Database
                 <td><?= $res['job_start_date']; ?> </td>
                 <td><?= $res['job_expire_date']; ?> </td> 
                 <td><?= $res['job_status']; ?> </td>
-                <td><a href="bid.php?job_id=<?php echo $res['job_id']?>"><button class="btn btn-outline-primary">Bid</button></td></a>
+                <td><a href="bid.php?job_id=<?php echo $res['job_id']?>&job_status=<?php echo $res['job_status']?>"><button class="btn btn-outline-primary">Bid</button></td></a>
                 </tr>
             </div>
 
@@ -255,18 +255,22 @@ class Job extends Database
 
     //This function is for login trademan to bit the posted jobs if he/she wants
     //After bidding, the job status will get changed accordingly recording trademan's ID
-    public function trademan_bid($job_id, $trademan_id, $user_id)
+    public function trademan_bid($job_id, $trademan_id, $user_id, $job_status)
     {
-        //`user_id`= $user_id and 
-        $sql = "UPDATE job SET `job_status`= 'Got bid', `trademan_id`= $trademan_id WHERE `job_id`= $job_id";
-        $result = $this->db->prepare($sql);
-
-        if(!$result) die ("Not correct sql");
-        else
+        if($job_status = 'Not one bid yet')
         {
+            $sql = "UPDATE job SET `job_status`= 'Got bid', `trademan_id`= $trademan_id WHERE `job_id`= $job_id";
+            $result = $this->db->prepare($sql);
             $result->execute();
         }
-        // return $result;
+        else
+        {
+            $sql = "INSERT INTO `job` (`trademan_id`) VALUES $trademan_id";
+            $result = $this->db->prepare($sql);
+            $result->execute();
+        }
+
+       
         
     }
 
@@ -282,8 +286,8 @@ class Job extends Database
 
     
         ?>
-        <table class = "table table-hover">
-        <thead>
+        <table class = "table table-hover table-sm table-light table-striped">
+        <thead table = "success">
         <tr>
         <th>Job ID</th>
         <th>Creater Customer ID</th>

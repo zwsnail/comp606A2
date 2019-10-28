@@ -10,7 +10,7 @@ include('header.php');
 $type = $_SESSION['type'];
 $user_id = $_SESSION['uid'];
 $name = $_SESSION['name'];
-$job_id = $_SESSION['job_id'];
+$job_id = $_GET['job_id'];
 
 
 $job_location = $_GET['job_location'];
@@ -33,7 +33,8 @@ $job_expire_date = $_GET['job_expire_date'];
 		<div class="row">
 			<div class="col-lg-4 offset-lg-4 bg-light rounded" id="register-box">
 				<h2 class="text-center mt-2">Change This Job</h2>
-				<form action="include/customer_edit_job.inc.php?" method="post" role="form" class="p-2" id="register-frm">
+				<form action="include/customer_edit_job.inc.php?job_id=<?php echo $job_id?>" method="post" role="form" class="p-2" id="register-frm">
+				
 					<div class="form-group">
 						<input type="text" name="location" class="form-control" value=<?php echo $job_location;?> required>
 					</div>

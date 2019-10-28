@@ -20,7 +20,7 @@ if(isset($type) && $type == 'customer')
 {
   
         
-    echo '<h2 class="font-italic text-success">If you are looking for a trademan, create you job first.</h2>
+    echo '<h2 class="font-italic text-success">If you are looking for a trademan, please create you job first(^_^)</h2>
     <a href="create_job.php"><button class="btn btn-outline-primary">Create my job!</button></a>
     <a href="customer_job_detail.php"><button class="btn btn-outline-primary">My job list</button></a>';
         

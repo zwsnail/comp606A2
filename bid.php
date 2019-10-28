@@ -6,7 +6,7 @@ session_start();
 include('header.php');
 
 $_SESSION['job_id'] = $_GET['job_id'];
-// $job_id = $_SESSION['job_id'];
+$_SESSION['job_status'] = $_GET['job_status'];
 // var_dump($job_id);
 ?>
 <!DOCTYPE html>
