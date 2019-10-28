@@ -170,10 +170,25 @@ include('header.php');
 		   	$("#login-frm").validate();
 		   	$("#register-frm").validate({
 		   		rules:{
+					email: {
+            					required: true,
+            					email: true,
+                			remote: {
+                   	 	url: "include/check_register_email.php",
+                    		type: "post"
+                 		}
+        			},
 		   			cpass:{
 		   				equalTo:"#pass",
 		   			}
-		   		}
+		   		},
+				messages: {
+       				email: {
+            			required: "Please enter your email address.",
+            			email: "Please enter a valid email address.",
+            			remote: "Email already in use!"
+        			}
+    			}
 		   	});
 		   	$("#forgot-frm").validate();
 		});
