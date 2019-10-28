@@ -30,7 +30,21 @@ class User extends Database
         }
 
     }
+    //This function is for check email
+    //check if email already exist
+    public function checkemail($email) 
+    {
 
+        $sql = "SELECT * FROM user WHERE (email='$email')";
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        $res = $result->fetch(PDO::FETCH_ASSOC);
+        if($res){
+            echo 'false';
+        }else{
+            echo 'true';
+        }
+    }  
     //This function is for login
     //Customer and Trademan are in same 'user' table, but one column named 'type' is different
     public function login($username, $password) 
