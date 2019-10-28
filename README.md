@@ -3,6 +3,8 @@
 1. Create an account name in database: 
     Accout name: compA2
     Password: 123
+    
+    import the sql file:   safe_trade.sql
 
 2. Create a new comstomer, then use its account to create a job. Could View/Edit/Delete the job.
 3. Logout 
