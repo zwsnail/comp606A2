@@ -181,7 +181,8 @@ include('header.php');
 		   			cpass:{
 		   				equalTo:"#pass",
 		   			}
-		   		},
+		   		}
+			},
 				messages: {
        				email: {
             			required: "Please enter your email address.",

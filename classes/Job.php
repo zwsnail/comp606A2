@@ -26,7 +26,7 @@ class Job extends Database
       
         $user_id = $_SESSION['uid'];
 
-        $sql = "INSERT INTO job VALUES ('0', $user_id, '$location', '$description', '$price', '$start', '$expire','No one bit yet','0')";
+        $sql = "INSERT INTO job VALUES ('0', $user_id, '$location', '$description', '$price', '$start', '$expire','No one bid yet','0')";
         $result = $this->db->prepare($sql);
 
         if(!$result) die ("Not correct sql");
@@ -230,7 +230,7 @@ class Job extends Database
                 <td><?= $res['job_status']; ?> </td>
 
 
-                <!-- if trademan alreay bid the same job, the bit button will be disabled -->
+                <!-- if trademan alreay bid the same job, the bid button will be disabled -->
 
             <?php
             //first check if the trademan bid or not

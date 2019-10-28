@@ -6,9 +6,10 @@
     There are some function in it:
 
     1.register()
-    2.login()
-    3.view_trademan_contact()
-    4.admin_login()
+    2.checkemail()
+    3.login()
+    4.view_trademan_contact()
+    5.admin_login()
 
 */
 
@@ -30,11 +31,12 @@ class User extends Database
         }
 
     }
+
+
     //This function is for check email
     //check if email already exist
     public function checkemail($email) 
     {
-
         $sql = "SELECT * FROM user WHERE (email='$email')";
         $result = $this->db->prepare($sql);
         $result->execute();
@@ -44,7 +46,8 @@ class User extends Database
         }else{
             echo 'true';
         }
-    }  
+    } 
+
     //This function is for login
     //Customer and Trademan are in same 'user' table, but one column named 'type' is different
     public function login($username, $password) 

@@ -2,7 +2,7 @@
 /*
     This page receives bid information.
     Then use the class Job 'create_estimate' function to create a bid in the database
-    Then use the class Job 'trademan_bid' function to change the job status from "No one bit" to "Got a bid"
+    Then use the class Job 'trademan_bid' function to change the job status from "No one bid" to "Got a bid"
 */
 session_start();
 require_once "../autoload.php";
