@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2019-10-23 05:39:22
+-- 生成日期： 2019-10-29 00:27:26
 -- 服务器版本： 10.3.16-MariaDB
 -- PHP 版本： 7.3.7
 
@@ -63,8 +63,7 @@ CREATE TABLE `estimate` (
 --
 
 INSERT INTO `estimate` (`id`, `job_id`, `trademan_id`, `material_cost`, `labor_cost`, `total_cost`, `starting_date`, `expiring_date`) VALUES
-(23, 35, 7, 365436, 426, 4263, '2019-10-16', '2019-10-16'),
-(28, 37, 19, 30000, 11111, 11111, '2019-10-23', '2019-10-23');
+(78, 56, 28, 777, 777, 777, '2019-10-10', '2019-10-10');
 
 -- --------------------------------------------------------
 
@@ -89,8 +88,8 @@ CREATE TABLE `job` (
 --
 
 INSERT INTO `job` (`job_id`, `user_id`, `job_location`, `job_description`, `job_price`, `job_start_date`, `job_expire_date`, `job_status`, `trademan_id`) VALUES
-(36, '13', 'chengdu', 'aaa', 100, '2019-09-09', '2019-10-10', 'Got bid', 14),
-(37, '15', 'forgive', 's', 1000, '2019-10-23', '2019-10-23', 'Got bid', 19);
+(56, '26', 'NZ', '1', 1, '2012-12-12', '2012-12-12', 'Got bid', 27),
+(57, '26', 'uk', '2', 2, '2018-08-08', '2018-08-08', 'No one bit yet', 0);
 
 -- --------------------------------------------------------
 
@@ -112,13 +111,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`uid`, `name`, `mobile`, `email`, `type`, `password`) VALUES
-(13, 'Meaningful', 123, '123@123.ocm', 'customer', 'e10adc3949ba59abbe56e057f20f883e'),
-(14, 'mark', 123, '1@1', 'trademan', 'e10adc3949ba59abbe56e057f20f883e'),
-(15, 'zhi', 12345, '123@123', 'customer', 'e10adc3949ba59abbe56e057f20f883e'),
-(16, 'www', 12345, '123@123', 'trademan', 'e10adc3949ba59abbe56e057f20f883e'),
-(17, 'qqq', 12345, 'zhangweicoco@gmail.com', 'customer', 'e10adc3949ba59abbe56e057f20f883e'),
-(18, 'www', 12345, 'lala@163.com', 'trademan', 'e10adc3949ba59abbe56e057f20f883e'),
-(19, 'zzzzzz', 12345, 'z@w', 'trademan', 'e10adc3949ba59abbe56e057f20f883e');
+(26, 'customer', 1, '1@1', 'customer', 'e10adc3949ba59abbe56e057f20f883e'),
+(27, 'trademan1', 1, '2@2', 'trademan', 'e10adc3949ba59abbe56e057f20f883e'),
+(28, 'trademan2', 3, '3@3', 'trademan', 'e10adc3949ba59abbe56e057f20f883e');
 
 --
 -- 转储表的索引
@@ -162,19 +157,19 @@ ALTER TABLE `admin`
 -- 使用表AUTO_INCREMENT `estimate`
 --
 ALTER TABLE `estimate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- 使用表AUTO_INCREMENT `job`
 --
 ALTER TABLE `job`
-  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- 使用表AUTO_INCREMENT `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
