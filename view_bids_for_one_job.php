@@ -7,6 +7,7 @@ require_once "autoload.php";
 require_once "header.php";
 
 $job_id = $_GET['job_id'];
+$_SESSION['job_id'] = $job_id;
 $job_description = $_GET['job_description'];
 $job_status = $_GET['job_status'];
 

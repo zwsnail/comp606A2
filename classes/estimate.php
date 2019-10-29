@@ -10,6 +10,7 @@
     2.trademan_view_estimate()
     3.trademan_delete_job
     4.customer_view_estimate
+    5.customer_confrim()
 
 */
 
@@ -37,7 +38,7 @@ class Estimate extends Database
         }
 
         //if there is alreay bid, then no need to change the job status, just add a bid
-        $sql = "INSERT INTO estimate VALUES ('0', '$job_id', '$trademan_id', '$material_cost', '$labor_cost', '$total_cost', '$starting_date', '$expiring_date')";
+        $sql = "INSERT INTO estimate VALUES ('0', '$job_id', '$trademan_id', '$material_cost', '$labor_cost', '$total_cost', '$starting_date', '$expiring_date', 'Pending')";
         $result = $this->db->prepare($sql);
         $result->execute();
 
@@ -62,6 +63,7 @@ class Estimate extends Database
         <th>Total Cost</th>
         <th>Job Start Date</th>
         <th>Job Expire Date</th>
+        <th>Confirmation</th>
         <th></th>
 
         <!-- <th>Contact</th> -->
@@ -86,6 +88,7 @@ class Estimate extends Database
                 <td><?= $res['total_cost']; ?> </td>
                 <td><?= $res['starting_date']; ?> </td>
                 <td><?= $res['expiring_date']; ?> </td> 
+                <td><?= $res['confirm'];?> </td>
                 <td><a href="include/estimate_delete.inc.php?id=<?php echo $res["id"];?>&job_id=<?php echo $res["job_id"];?>&job_status=<?php echo $res["job_status"];?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>
                 </tr>
             </div>
@@ -149,43 +152,82 @@ class Estimate extends Database
         <th>Total Cost</th>
         <th>Job Start Date</th>
         <th>Job Expire Date</th>
-
-
-        <!-- <th>Contact</th> -->
+        <th>Confirmation</th>
 
         </tr>
         </thead>
         <tbody>
         <?php
-     
+
+        $sql2 = "SELECT count(*) FROM `estimate` WHERE `job_id` =$job_id";
+        $result2 = $this->db->prepare($sql2);
+        $result2->execute();
+        $rows = $result2->fetchAll( PDO::FETCH_COLUMN, 0);
+        $row = $rows[0];
+      
+       
+        $class = '';
         foreach ($result as $key => $res) 
-        {
+        {       
+ 
+            if($res[8] == "Confirmed!!!")
+            {
+                $class = "confirm";
+                ?>
+                <style>.confirm { background-color: gold;}</style>
+                <?php
+            }
+            if($res[8] == "Refused...")
+            {
+                $class = "refuse";
+                ?>
+                <style>.refuse { background-color: grey;}</style>
+                <?php
+            }
             
             ?>
             
-            <div class="container-fluid">
-                
+            <div class="container-fluid">     
                 <tr>
-                <td><?= $res['job_id']; ?> </td>
-                <td><a href="trademan_contact.php?trademan_id=<?php echo $res['trademan_id']?>"><?= $res['trademan_id']; ?></a></td>
-                <td><?= $res['material_cost']; ?> </td>
-                <td><?= $res['labor_cost']; ?> </td>
-                <td><?= $res['total_cost']; ?> </td>
-                <td><?= $res['starting_date']; ?> </td>
-                <td><?= $res['expiring_date']; ?> </td> 
-                
+                <td class=<?php echo $class?>><?= $res['job_id']; ?> </td>
+                <td class=<?php echo $class?>><a href="trademan_contact.php?trademan_id=<?php echo $res['trademan_id']?>"><?= $res['trademan_id']; ?></a></td>
+                <td class=<?php echo $class?>><?= $res['material_cost']; ?> </td>
+                <td class=<?php echo $class?>><?= $res['labor_cost']; ?> </td>
+                <td class=<?php echo $class?>><?= $res['total_cost']; ?> </td>
+                <td class=<?php echo $class?>><?= $res['starting_date']; ?> </td>
+                <td class=<?php echo $class?>><?= $res['expiring_date']; ?> </td> 
+                <td class=<?php echo $class?>><?= $res['confirm'];?></td>
                 </tr>
             </div>
+                
 
-        <?php
-        // $_SESSION['uid'] = $res['uid'];
-        // $_SESSION['name'] = $res['name'];
-        // $_SESSION['type'] = $res['type'];
-        }?>
+            <?php
+            $class = '';
+
+        }
+
+        ?>
         </tbody>
         </table>
         <?php
-        return $result;
+
+            
+
+    }
+
+
+
+
+
+    public function customer_confrim($job_id, $trademan_id)
+    {
+        $sql = "UPDATE estimate SET `confirm`= 'Confirmed!!!' WHERE `job_id`= $job_id AND `trademan_id` = $trademan_id";
+        $result = $this->db->prepare($sql);
+        $result->execute();
+
+        $sql1 = "UPDATE estimate SET `confirm`= 'Refused...' WHERE `confirm`= 'Pending'";
+        $result1 = $this->db->prepare($sql1);
+        $result1->execute();
     }
 
 }

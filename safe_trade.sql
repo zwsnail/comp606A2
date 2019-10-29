@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2019-10-29 00:27:26
+-- 生成日期： 2019-10-29 11:04:48
 -- 服务器版本： 10.3.16-MariaDB
 -- PHP 版本： 7.3.7
 
@@ -55,15 +55,17 @@ CREATE TABLE `estimate` (
   `labor_cost` int(11) NOT NULL,
   `total_cost` int(11) NOT NULL,
   `starting_date` date NOT NULL,
-  `expiring_date` date NOT NULL
+  `expiring_date` date NOT NULL,
+  `confirm` varchar(255) NOT NULL DEFAULT 'Waiting for Confirmation'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- 转存表中的数据 `estimate`
 --
 
-INSERT INTO `estimate` (`id`, `job_id`, `trademan_id`, `material_cost`, `labor_cost`, `total_cost`, `starting_date`, `expiring_date`) VALUES
-(78, 56, 28, 777, 777, 777, '2019-10-10', '2019-10-10');
+INSERT INTO `estimate` (`id`, `job_id`, `trademan_id`, `material_cost`, `labor_cost`, `total_cost`, `starting_date`, `expiring_date`, `confirm`) VALUES
+(83, 58, 27, 1, 1, 2, '2019-10-10', '2018-08-08', 'Refused...'),
+(84, 58, 28, 3, 3, 6, '2019-09-09', '2019-09-09', 'Confirmed!!!');
 
 -- --------------------------------------------------------
 
@@ -88,8 +90,7 @@ CREATE TABLE `job` (
 --
 
 INSERT INTO `job` (`job_id`, `user_id`, `job_location`, `job_description`, `job_price`, `job_start_date`, `job_expire_date`, `job_status`, `trademan_id`) VALUES
-(56, '26', 'NZ', '1', 1, '2012-12-12', '2012-12-12', 'Got bid', 27),
-(57, '26', 'uk', '2', 2, '2018-08-08', '2018-08-08', 'No one bit yet', 0);
+(59, '26', 'Rotorua', 'Dance', 22, '2018-08-08', '2018-08-08', 'No one bid yet', 0);
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`uid`, `name`, `mobile`, `email`, `type`, `password`) VALUES
 (26, 'customer', 1, '1@1', 'customer', 'e10adc3949ba59abbe56e057f20f883e'),
 (27, 'trademan1', 1, '2@2', 'trademan', 'e10adc3949ba59abbe56e057f20f883e'),
-(28, 'trademan2', 3, '3@3', 'trademan', 'e10adc3949ba59abbe56e057f20f883e');
+(28, 'trademan2', 3, '3@3', 'trademan', 'e10adc3949ba59abbe56e057f20f883e'),
+(29, 'trademan3', 1, '1@1', 'trademan', 'e10adc3949ba59abbe56e057f20f883e');
 
 --
 -- 转储表的索引
@@ -157,19 +159,19 @@ ALTER TABLE `admin`
 -- 使用表AUTO_INCREMENT `estimate`
 --
 ALTER TABLE `estimate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- 使用表AUTO_INCREMENT `job`
 --
 ALTER TABLE `job`
-  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- 使用表AUTO_INCREMENT `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -171,13 +171,13 @@ include('header.php');
 		   	$("#register-frm").validate({
 		   		rules:{
 					email: {
-            					required: true,
-            					email: true,
+							required: true,
+							email: true,
                 			remote: {
-                   	 	url: "include/check_register_email.php",
+                   	 		url: "include/check_register_email.php",
                     		type: "post"
-                 		}
-        			},
+                 					}
+        						},
 		   			cpass:{
 		   				equalTo:"#pass",
 		   			}

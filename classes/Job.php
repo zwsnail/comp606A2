@@ -279,7 +279,7 @@ class Job extends Database
     
         ?>
         <table class = "table table-hover table-sm table-light table-striped">
-        <thead table = "success">
+        <thead class="table-success">
         <tr>
         <th>Job ID</th>
         <th>Creater Customer ID</th>
