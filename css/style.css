@@ -22,3 +22,6 @@ table {
     width:  1250px;
     padding: 20px;
 }
+.error {
+    color: #f00;
+}
