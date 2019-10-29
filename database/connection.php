@@ -26,6 +26,7 @@ class Database
     catch(PDOException $e)
     {
       echo "Connection failed: " . $e->getMessage();
+       header("Location: sitedown.php");
     }
   }
 
