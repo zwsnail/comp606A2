@@ -1,34 +1,24 @@
 <?php
-session_start();
-// $db = mysqli_connect("localhost","root","","safe_trade");
-// mysqli_select_db($db, "safe_trade");
+error_reporting(0);
 
+/*$user = "root";
+$password = "";
+$database = "safe_trade";
+$host = "localhost";*/
 
-class Database
-{
-  public $db;
+$user = "comp606A2";
+$password = "123";
+$database = "safe_trade";
+$servername = "localhost";
 
-  public function  __construct()
-  {
-    $username = "comp606A2";
-    $password = "123";
-    $servername = "localhost";
-
-    try 
-    {
-
-      $this->db = new PDO("mysql:host=$servername; dbname=safe_trade", $username, $password);
-    
-      $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    }
-
-    catch(PDOException $e)
-    {
-      echo "Connection failed: " . $e->getMessage();
-       header("Location: sitedown.php");
-    }
-  }
-
-
+$mysqli = mysqli_connect($host, $user, $password, $database);
+if ($mysqli == false){
+    echo "<h2>Site is down</h2>";
+    header("Location: sitedown.php");
 }
+
+$mysqli->autocommit(true);
+
+error_reporting(E_ALL);
+
+?>
