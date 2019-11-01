@@ -17,6 +17,12 @@
 	</head>
 
 <body>  
+<?php
+if(isset($_GET['error']))
+{
+	echo '<p id="error" class="bg-danger text-white text-center"> Wrong Password or Username. Please try again :)<p>';
+}
+?>
 	<div class="container mt-4">
 
 		<!-- login form -->
