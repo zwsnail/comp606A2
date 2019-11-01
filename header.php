@@ -38,17 +38,21 @@
 
 
     <?php
-  
-    if(!isset($_SESSION['name']))
+    $usertype ="public";
+    
+    if(isset($_SESSION['usertype'])){
+      $usertype = "admin" ;
+    }
+    //echo $usertype;
+    if(!isset($_SESSION['name']) && $usertype == "public")
     {
         
         echo '<a class="nav-link text-right">Want to post?</a>';
         echo '<a href="login_register.php"><button type="submit" class="btn btn-outline-warning text-right" name="loginbtn">Login</button></a>';
-    }
-    else
+    }else
     {
        
-        echo '<a href="home.php"><button type="submit" class="btn btn-outline-warning text-right" name="loginbtn">Logout</button></a>';
+        echo '<a href="logout.php"><button type="submit" class="btn btn-outline-warning text-right" name="loginbtn">Logout</button></a>';
     }
 
   ?>
