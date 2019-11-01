@@ -4,7 +4,8 @@
 	Maintain the old information in the form as placeholder for customer to reconsider it
 */
 session_start();
-include_once "autoload.php";
+include_once "database/autoloader.php";
+include_once "database/connection.php";
 include('header.php');
 
 $type = $_SESSION['type'];
