@@ -1,14 +1,8 @@
 <?php
 session_start();
-include_once "../autoload.php";
-
+include_once "../helper/autoloader.php";
 
 $job_id = $_GET['job_id'];
-
-
-
-
-
 if(isset($_POST['change_job']))
 {	
 
@@ -21,10 +15,8 @@ if(isset($_POST['change_job']))
 	
 	
     //updating the table
-    $job = new Job;
-    $job ->customer_edit_job($job_id, $job_location, $job_description, $job_price, $job_start_date, $job_expire_date);
-
-
+    $job = Job::customer_edit_job($mysqli, $job_id, $job_location, $job_description, $job_price, $job_start_date, $job_expire_date);
+    
     $type = $_SESSION['type'];
     $user_id = $_SESSION['uid'];
     $name = $_SESSION['name'];
@@ -34,7 +26,7 @@ if(isset($_POST['change_job']))
     // var_dump($job_id);
 
 
-    header("Location: ../welcome.php");
+    header("Location: ../customer_job_detail.php");
 
 
 
