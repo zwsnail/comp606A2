@@ -1,5 +1,5 @@
 <?php
-include_once "../autoload.php";
+include_once "../helper/autoloader.php";
 session_start();
 
 
@@ -13,13 +13,14 @@ $expire = $_POST['expire'];
 
 if(isset($_SESSION['uid']))   
 { 
-    $job = new Job;
-    $result = $job->create_job($_SESSION['uid'], $location, $description, $price, $start, $expire);
+    $job = Job::create_job($mysqli, $_SESSION['uid'], $location, $description, $price, $start, $expire);
+   /* $job = new Job;
+    $result = $job->create_job($_SESSION['uid'], $location, $description, $price, $start, $expire);*/
  
     header("Location: ../customer_job_detail.php?");
-}else
+}else{
     echo "something wrong";
-
+}
 
     
 
