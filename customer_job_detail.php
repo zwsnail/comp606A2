@@ -5,7 +5,8 @@
 */
 
 session_start();
-include_once "autoload.php";
+include_once "database/autoloader.php";
+include_once "database/connection.php";
 include('header.php');
 
 //Save the session 
@@ -27,8 +28,9 @@ if(isset($type) && $type == 'customer')
     <br>
     <!-- display the jobs -->
     <?php
-    $job = new Job;
-    $job->customer_view_job($_SESSION['uid']);
+    $job = Job::customer_view_job($mysqli, $_SESSION['uid']);
+    /*$job = new Job;
+    $job->customer_view_job($_SESSION['uid']);*/
 }
 else
 {echo 'something wrong';}
