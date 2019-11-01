@@ -3,7 +3,8 @@
    This page is for displaying customer confirmation of an estimate.
 */
 session_start();
-require_once "autoload.php";
+include_once "database/autoloader.php";
+include_once "database/connection.php";
 require_once "header.php";
 
 echo '<br>';
@@ -18,11 +19,8 @@ $job_id = $_SESSION['job_id'];
 if(isset($_GET['trademan_id']))
 {
     $trademan_id = $_GET['trademan_id'];
-
-    $bid = new Estimate;
-    $bid->customer_confrim($job_id, $trademan_id);
+    $bid = Estimate::customer_confrim($mysqli, $job_id, $trademan_id);
+    
 }
 
-
-$bid = new Estimate;
-$bid->customer_view_estimate($job_id);
+$bid = Estimate::customer_view_estimate($mysqli, $job_id);
