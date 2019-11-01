@@ -1,6 +1,7 @@
 <?php
 session_start();
-include_once "autoload.php";
+include_once "database/autoloader.php";
+include_once "database/connection.php";
 include('header.php');
 
 ?>
@@ -17,17 +18,8 @@ include('header.php');
     </div>
     <!-- display the jobs -->
     <?php
+    $job = Job::public_view_job($mysqli);
+    $result = $job;
 
-    $job = new Job;
-    $result = $job->public_view_job();
-
-
-
-
-
-
-
-
-
-include('footer.php');
+//include('footer.php');
 ?>
