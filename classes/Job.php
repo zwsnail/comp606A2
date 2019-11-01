@@ -20,30 +20,88 @@
 
 class Job extends Database
 {
+
+    private $user_id = null;
+    private $location = "";
+    private $description = "";
+    private $price = "";
+    private $start = "";
+    private $expire = "";
+
+    // constructor to create new student object
+    public function __construct($user_id, $location, $description, $price, $start, $expire){
+        $this->user_id = $user_id;
+        $this->location = $location;
+        $this->description = $description;
+        $this->price = $price;
+        $this->start = $start;
+        $this->expire = $expire;
+    }
+    // setter methods
+    public function setUser_id($user_id){
+        $this->$id = $id;
+      }
+    public function setLocation($location){
+    $this->$location = $location;
+    }
+    public function setDescription($description){
+        $this->$description = $description;
+    }
+    public function setPrice($price){
+    $this->$price = $price;
+    }
+    public function setStart($start){
+        $this->$start = $start;
+    }
+    public function setExpire($expire){
+    $this->$expire = $expire;
+    }
+
+    //getter methods
+
+    public function getUser_id(){
+        return $this->user_id;
+    }
+    public function getLocation(){
+        return $this->location;
+    }
+    public function getDescription(){
+        return $this->description;
+    }
+    public function getPrice(){
+        return $this->price;
+    }
+    public function getStart(){
+        return $this->start;
+    }
+    public function getExpire(){
+        return $this->expire;
+    }
     //Customer can post job 
-    public function create_job($user_id, $location, $description, $price, $start, $expire) 
+    public static function create_job($mysqli, $user_id, $location, $description, $price, $start, $expire) 
     {
       
         $user_id = $_SESSION['uid'];
+        $sql = "INSERT INTO job VALUES ('0', '$user_id', '$location', '$description', '$price', '$start', '$expire','No one bid yet','0')";
+        $result = $mysqli->query($sql) or die($mysqli->error);
 
-        $sql = "INSERT INTO job VALUES ('0', $user_id, '$location', '$description', '$price', '$start', '$expire','No one bid yet','0')";
-        $result = $this->db->prepare($sql);
-
-        if(!$result) die ("Not correct sql");
-        else
-        {
-            $result->execute();
-        }
-        return $result;
+        if($result){
+			$job_id = $mysqli->insert_id;
+			$job = new Job($job_id,$username, $mobile, $email, $type, $password);
+		    $result = $job;
+		}
+			return $result;
     }
 
    
     //This function is for everyone can view all the job on home page no need to login
-    public function public_view_job() 
+    public static function public_view_job($mysqli) 
     {
         $sql = "SELECT * FROM job";
-        $result = $this->db->prepare($sql);
-        $result->execute();
+        $result = $mysqli->query($sql) or die($mysqli->error);
+        $public_jobview = $result->fetch_array(MYSQLI_ASSOC);
+        /*$result = $this->db->prepare($sql);
+        $result->execute();*/
         
         ?>
         <div>
@@ -65,8 +123,7 @@ class Job extends Database
         <tbody>
         <?php
      
-        while($res = $result->fetch(PDO::FETCH_ASSOC))
-        {
+     foreach ($result as $key => $res){
             
             ?>
             
@@ -94,13 +151,15 @@ class Job extends Database
     }
 
     //This function is for only login customer can view his/her own posted jobs
-    public function customer_view_job($user_id) 
+    public static function customer_view_job($mysqli, $user_id) 
     {
         // $user_id = $_SESSION['uid'];
 
         $sql = "SELECT * FROM job WHERE (user_id = '$user_id')";
-        $result = $this->db->prepare($sql);
-        $result->execute();
+        /*$result = $this->db->prepare($sql);
+        $result->execute();*/
+        $result = $mysqli->query($sql) or die($mysqli->error);
+        $customer_jobresult = $result->fetch_array(MYSQLI_ASSOC);
         
         ?>
         
@@ -123,7 +182,8 @@ class Job extends Database
         <?php
 
        
-        
+        //print_r($customer_jobresult);
+        //die("m here");
         foreach ($result as $key => $res) 
         {
             ?>
@@ -161,41 +221,41 @@ class Job extends Database
     }
 
     //This function is for login customer to edit his/her posted jobs
-    public function customer_edit_job($job_id, $job_location, $job_description, $job_price, $job_start_date, $job_expire_date) 
+    public static function customer_edit_job($mysqli, $job_id, $job_location, $job_description, $job_price, $job_start_date, $job_expire_date) 
     {
 
 
         $sql = "UPDATE job SET job_location = '$job_location', job_description = '$job_description', job_price = '$job_price', job_start_date = '$job_start_date', job_expire_date = '$job_expire_date' WHERE (job.job_id = '$job_id')";
-        $result = $this->db->prepare($sql);
-        $result->execute();
+        $result = $mysqli->query($sql) or die($mysqli->error);
+        //$edit_job = $result->fetch_array(MYSQLI_ASSOC);
+        if($result){
+            return $result;
+        }
         //need to pass something?
-
-
-       
     }
 
     //This function is for login customer to delete his/her posted jobs
-    public function customer_delete_job($job_id) 
+    public static function customer_delete_job($mysqli, $job_id) 
     {
         // session_start();
   
         //AND `job`.`user_id` = $uid"
         $sql = "DELETE FROM `job` WHERE `job`.`job_id` = $job_id";
-        $result = $this->db->prepare($sql);
-        $result->execute();
+        $result = $mysqli->query($sql) or die($mysqli->error);
+       
         
 
     }
 
     //This function is for login trademan to view all posted jobs 
     //Plus he/she can bid the job!
-    public function trademan_view_job($user_id) 
+    public static function trademan_view_job($mysqli, $user_id) 
     {
        
 
         $sql = "SELECT * FROM job";
-        $result = $this->db->prepare($sql);
-        $result->execute();
+        $result = $mysqli->query($sql) or die($mysqli->error);
+        $trademan_jobview = $result->fetch_array(MYSQLI_ASSOC);
         
         ?>
         <table class = "table table-hover table-sm table-light table-striped">
@@ -235,9 +295,9 @@ class Job extends Database
             <?php
             //first check if the trademan bid or not
             $sql1 = "SELECT * FROM `estimate` WHERE `trademan_id`= $user_id";
-            $result1 = $this->db->prepare($sql1);
-            $result1->execute();
-            $res1 = $result1->fetch(PDO::FETCH_ASSOC);
+            $result1 = $mysqli->query($sql) or die($mysqli->error);
+            $res1 = $result1->fetch_array(MYSQLI_ASSOC);
+            
             // button disabled
             if($res1['trademan_id'] == $user_id && $res['job_status'] == 'Got bid' && $res1['job_id']== $res['job_id'] )
             {?>
@@ -268,7 +328,7 @@ class Job extends Database
 
     //The admin also can view all jobs like other non-logged customer
     //But admin can delete any job if it contains some inappropriate content
-    public function admin_view_job() 
+    public static function admin_view_job() 
     {
         // session_start();
 
@@ -331,7 +391,7 @@ class Job extends Database
 
 
     //This function is for Admin deletes any job if it contains some inappropriate content
-    public function admin_delete_job($job_id) 
+    public static function admin_delete_job($job_id) 
     {
         // session_start();
 
@@ -341,15 +401,6 @@ class Job extends Database
         
 
     }
-
-
-
-
-
-
-
-
-
 
 
 }
