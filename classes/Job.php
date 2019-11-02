@@ -328,14 +328,13 @@ class Job extends Database
 
     //The admin also can view all jobs like other non-logged customer
     //But admin can delete any job if it contains some inappropriate content
-    public static function admin_view_job() 
+    public static function admin_view_job($mysqli) 
     {
         // session_start();
 
         $sql = "SELECT * FROM job";
-        $result = $this->db->prepare($sql);
-        $result->execute();
-
+        $result = $mysqli->query($sql) or die($mysqli->error);
+        
     
         ?>
         <table class = "table table-hover table-sm table-light table-striped">
@@ -391,16 +390,15 @@ class Job extends Database
 
 
     //This function is for Admin deletes any job if it contains some inappropriate content
-    public static function admin_delete_job($job_id) 
+    public static function admin_delete_job($mysqli, $job_id) 
     {
         // session_start();
 
         $sql = "DELETE FROM `job` WHERE `job`.`job_id` = $job_id";
-        $result = $this->db->prepare($sql);
-        $result->execute();
+        $result = $mysqli->query($sql) or die($mysqli->error);
+        
         
 
     }
-
 
 }
