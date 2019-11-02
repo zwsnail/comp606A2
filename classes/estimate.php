@@ -286,11 +286,11 @@ class Estimate
     {
         $sql = "UPDATE estimate SET `confirm`= 'Confirmed!!!' WHERE `job_id`= $job_id AND `trademan_id` = $trademan_id";
         $result = $mysqli->query($sql) or die($mysqli->error);
-        return $result;
+ 
 
         $sql1 = "UPDATE estimate SET `confirm`= 'Refused...' WHERE `confirm`= 'Pending'";
         $result1 = $mysqli->query($sql1) or die($mysqli->error);
-        return $result1;
+       
     }
 
 }
