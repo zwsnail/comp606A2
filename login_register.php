@@ -21,7 +21,11 @@ include('header.php');
 	if(isset($_GET['error']))
 	{
 		echo '<p id="error" class="bg-danger text-white text-center"> Wrong Password or Username. Please try again :)<p>';
-	}; 
+	}
+	if(isset($_GET['already']))
+	{
+		echo '<p id="error" class="bg-danger text-white text-center"> Username or Email already exists. Please try again :)<p>';
+	}
 	?>
 
 
@@ -168,34 +172,17 @@ include('header.php');
 
 		  // validate the form
 		   	$("#login-frm").validate();
+			 // $("#register-frm").validate();
 		   	$("#register-frm").validate({
 		   		rules:{
-					email: {
-            			required: true,
-            			email: true,
-                	remote: {
-                   	 	url: "include/check_register_email.php",
-                    	type: "post"
-                 	}
-        			},
 		   			cpass:{
 		   				equalTo:"#pass",
 		   			}
-		   		},
-				messages: {
-       				email: {
-            			required: "Please enter your email address.",
-            			email: "Please enter a valid email address.",
-            			remote: "Email already in use!"
-        			}
-    			}
+		   		}
 		   	});
 		   	$("#forgot-frm").validate();
 		});
 
 	</script>
-
-
-
 </body>
 </html>
