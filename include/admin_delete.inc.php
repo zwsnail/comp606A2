@@ -1,14 +1,14 @@
 <?php
 session_start();
-include_once "../autoload.php";
+include_once "../helper/autoloader.php";
 
 
 
 
 $job_id = $_GET['job_id'];
 
-$job = new Job;
-$job->admin_delete_job($job_id);
+$job = Job::admin_delete_job($mysqli, $job_id);
+
 
 // $uid = $_SESSION['uid'];
 // $name = $_SESSION['name'];
