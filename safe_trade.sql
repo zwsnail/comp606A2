@@ -101,7 +101,7 @@ INSERT INTO `job` (`job_id`, `user_id`, `job_location`, `job_description`, `job_
 CREATE TABLE `user` (
   `uid` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `mobile` int(11) NOT NULL,
+  `mobile` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
