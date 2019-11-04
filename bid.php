@@ -27,10 +27,8 @@ $_SESSION['job_status'] = $_GET['job_status'];
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                         </div>
-                        <input name="material_price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                        <div class="input-group-append">
-                            <span class="input-group-text">.00</span>
-                        </div>
+                        <input name="material_price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="material_price">
+                        
                     </div>
 
                     <p>How much estimating cost for the labor?</p>
@@ -39,10 +37,8 @@ $_SESSION['job_status'] = $_GET['job_status'];
                             <div class="input-group-prepend">
                                 <span class="input-group-text">$</span>
                             </div>
-                            <input name="labor_price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                            <div class="input-group-append">
-                                <span class="input-group-text">.00</span>
-                            </div>
+                            <input name="labor_price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" required>
+                           
                         </div>
 
                     <p>Totally estimating cost :</p>
@@ -51,10 +47,8 @@ $_SESSION['job_status'] = $_GET['job_status'];
                             <div class="input-group-prepend">
                                 <span class="input-group-text">$</span>
                             </div>
-                            <input name="toal_price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                            <div class="input-group-append">
-                                <span class="input-group-text">.00</span>
-                            </div>
+                            <input name="toal_price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" required>
+                            
                         </div>
 
 					<div class="form-group">
@@ -93,9 +87,13 @@ $_SESSION['job_status'] = $_GET['job_status'];
 	<script>
 
 		  // validate the form
-		   	$("#register-frm").validate();
-
-
+		   	$("#register-frm").validate({
+		   		rules:{
+		   			material_price:{
+		   				required: true
+		   			}
+		   		}
+		   	});
 	</script>
 
 
