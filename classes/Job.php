@@ -295,11 +295,11 @@ class Job extends Database
             <?php
             //first check if the trademan bid or not
             $sql1 = "SELECT * FROM `estimate` WHERE `trademan_id`= $user_id";
-            $result1 = $mysqli->query($sql) or die($mysqli->error);
+            $result1 = $mysqli->query($sql1) or die($mysqli->error);
             $res1 = $result1->fetch_array(MYSQLI_ASSOC);
             
             // button disabled
-            if($res1['trademan_id'] == $user_id && $res['job_status'] == 'Got bid' && $res1['job_id']== $res['job_id'] )
+            if($res1['trademan_id'] == $user_id && $res['job_status'] == 'Got bid' || $res1['job_id']== $res['job_id'] )
             {?>
                 <td><a href="bid.php?job_id=<?php echo $res['job_id']?>&job_status=<?php echo $res['job_status']?>"><button disabled class="btn btn-outline-primary">Already Bid</button></td></a>
             <?php
