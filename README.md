@@ -1,6 +1,8 @@
 * Instruction how to set up:
 
 1. Create an account name in database: 
+    database = "safe_trade";
+    $servername = "localhost";
     Accout name: comp606A2
     Password: 123
 
